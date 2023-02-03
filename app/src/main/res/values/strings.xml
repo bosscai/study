@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">测试App</string>
+    <string name="receiver_name">Receiver</string>
+</resources>
