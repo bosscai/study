@@ -67,11 +67,11 @@ public class MainActivity extends AppCompatActivity implements MainRecyclerViewA
             break;
 
             case 1:{
-                Intent intent = new Intent();
-                intent.setAction("android.intent.action.TEST");
+//                Intent intent = new Intent();
+//                intent.setAction("android.intent.action.TEST");
 //                intent.addCategory("android.intent.category.TEST_1");
 //                intent.addCategory("android.intent.category.TEST_2");
-                startActivity(intent);
+                startActivity(new Intent(this, FirstActivity.class));
             }
             break;
 

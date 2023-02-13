@@ -37,4 +37,7 @@ dependencies {
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+//
+//    //定制容器：https://yuque.antfin.com/ei894w/vf59gk/iweln3
+//    providedCompile('com.taobao.live:tblive_dynamic_sdk:2.30.0.11221740')
 }
