@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.net.Uri;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -43,7 +44,7 @@ public class MainActivity extends AppCompatActivity implements MainRecyclerViewA
         data.add("广播");
         data.add("Activity的隐式启动");
         data.add("ViewStub学习");
-        data.add("广播");
+        data.add("Enable");
     }
 
     private void initView() {
@@ -77,6 +78,9 @@ public class MainActivity extends AppCompatActivity implements MainRecyclerViewA
 
             case 2:
                 startActivity(new Intent(this, SecondActivity.class));
+                break;
+            case 3:
+                startActivity(new Intent(this, ThirdActivity.class));
                 break;
         }
     }
