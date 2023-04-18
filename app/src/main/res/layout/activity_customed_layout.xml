@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.CustomedLayoutActivity">
+
+    <com.example.test.view.CustomedLayout
+        android:id="@+id/custom_layout"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="200dp">
+        <TextView
+            android:text="你好0你好0你好0你好0你好0你好0你好0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:text="你好1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:text="你好2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </com.example.test.view.CustomedLayout>
+
+    <Button
+        android:id="@+id/btn_start"
+        android:text="开始"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"/>
+
+    <Button
+        android:id="@+id/btn_pause"
+        android:text="暂停"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/btn_start"/>
+
+    <Button
+        android:id="@+id/btn_resume"
+        android:text="恢复"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/btn_pause"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

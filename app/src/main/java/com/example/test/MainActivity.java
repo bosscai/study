@@ -18,6 +18,7 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import com.example.test.adapter.MainRecyclerViewAdapter;
+import com.example.test.view.CustomedLayoutActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -67,6 +68,7 @@ public class MainActivity extends AppCompatActivity implements MainRecyclerViewA
         data.add("ViewStub学习");
         data.add("Enable");
         data.add("ScreenShot");
+        data.add("CustomedLayout");
     }
 
     private void initView() {
@@ -106,6 +108,9 @@ public class MainActivity extends AppCompatActivity implements MainRecyclerViewA
                 break;
             case 4:
                 startActivity(new Intent(this, ScreenShotActivity.class));
+                break;
+            case 5:
+                startActivity(new Intent(this, CustomedLayoutActivity.class));
                 break;
         }
     }
