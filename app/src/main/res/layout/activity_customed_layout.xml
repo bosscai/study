@@ -11,18 +11,18 @@
         app:layout_constraintTop_toTopOf="parent"
         android:layout_width="match_parent"
         android:layout_height="200dp">
-        <TextView
-            android:text="你好0你好0你好0你好0你好0你好0你好0"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-        <TextView
-            android:text="你好1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-        <TextView
-            android:text="你好2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+<!--        <TextView-->
+<!--            android:text="你好0你好0你好0你好0你好0你好0你好0"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"/>-->
+<!--        <TextView-->
+<!--            android:text="你好1"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"/>-->
+<!--        <TextView-->
+<!--            android:text="你好2"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"/>-->
     </com.example.test.view.CustomedLayout>
 
     <Button
