@@ -1,24 +1,16 @@
 package com.example.test.view;
 
-import android.animation.Animator;
-import android.animation.ValueAnimator;
 import android.content.Context;
-import android.graphics.Canvas;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.LinearInterpolator;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
-import com.example.test.R;
 import com.example.test.danmaku.ViweAndAnimation;
 
 import java.util.LinkedList;
-import java.util.Queue;
 
 /**
  * 作者：蔡承轩（阿蔡）
@@ -65,6 +57,10 @@ public class CustomedLayout extends ViewGroup {
         Log.e(TAG, "onMeasure widthSize: " +  widthSize + " heightSize:" + heightSize);
         //测量子布局
         measureChildren(widthMeasureSpec, heightMeasureSpec);
+        for (int i=0; i<getChildCount();i++){
+            View childView = getChildAt(i);
+            viewQueue.addLast(childView);
+        }
     }
 
     @Override
@@ -73,30 +69,10 @@ public class CustomedLayout extends ViewGroup {
         int heightOffset = 0;
         Log.e(TAG, "childCount: " + childCount);
         Log.e(TAG, "left: " + l +" top: " + t + " right: " + r + " bottom: " + b);
-        for (int i=0; i<childCount;i++){
-            View childView = getChildAt(i);
-            viewQueue.addLast(childView);
-            childView.addOnLayoutChangeListener(layoutChangeListener);
-            int childWidth = childView.getMeasuredWidth();
-            int childHeight = childView.getMeasuredHeight();
-            Log.e(TAG, "childWidth: " + MeasureSpec.getSize(childWidth) + " childHeight: " +
-                    MeasureSpec.getSize(childHeight));
-            childView.layout(r-10, t + heightOffset,
-                    r-10 + childView.getMeasuredWidth(),
-                    t + heightOffset + childView.getMeasuredHeight());
-            heightOffset += childView.getMeasuredHeight();
-        }
     }
     public void start() {
         Log.e(TAG, "start: ");
-        ViweAndAnimation viewAndAnimation = new ViweAndAnimation(getMeasuredWidth());
-        if (viewAndAnimation.childView != null) {
-            viewAndAnimation.childView.removeOnLayoutChangeListener(layoutChangeListener);
-        }
-        if (viewQueue.isEmpty()) return;
-        viewAndAnimation.childView = viewQueue.poll();
-        viewAndAnimation.childView.addOnLayoutChangeListener(layoutChangeListener);
-        viewAndAnimation.start();
+        showNext();
     }
 
     /**
