@@ -72,7 +72,7 @@ public class CustomedLayout extends ViewGroup {
         Log.e(TAG, "start: ");
         for (int i = 0; i < 10; i++) {
             TextView textView = new TextView(getContext());
-            textView.setText(getRandomString(10));
+            textView.setText(getRandomString(new Random().nextInt(20)));
             viewQueue.addLast(textView);
             addView(textView);
         }
@@ -98,8 +98,28 @@ public class CustomedLayout extends ViewGroup {
         if (viewQueue.isEmpty()) return;
         ViweAndAnimation viweAndAnimation = new ViweAndAnimation(getMeasuredWidth());
         viweAndAnimation.childView = viewQueue.poll();
+        //当前的View的宽度
+        int measuredWidth = viweAndAnimation.childView.getMeasuredWidth();
+        //下一个View的宽度
+        if (!viewQueue.isEmpty()){
+            final View lastView = viewQueue.getFirst();
+            if (viweAndAnimation.childView.getMeasuredWidth() > lastView.getMeasuredWidth()){
+                int i = viweAndAnimation.childView.getMeasuredWidth() - lastView.getMeasuredWidth();
+                minGap = MeasureSpec.getSize(i);
+                Log.e(TAG, "minGap: " + minGap);
+            };
+        }
         viweAndAnimation.childView.addOnLayoutChangeListener(layoutChangeListener);
         viweAndAnimation.start();
+    }
+
+    /**
+     * 添加弹幕数据
+     * @param view
+     */
+    public void addItem(View view){
+        viewQueue.addLast(view);
+        addView(view);
     }
 
     public void stop() {

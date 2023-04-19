@@ -1,7 +1,12 @@
 package com.example.test.danmaku;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
+import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewParent;
 import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
 
@@ -12,6 +17,8 @@ import android.view.animation.LinearInterpolator;
  * 描述：
  */
 public class ViweAndAnimation {
+
+    public static final String TAG = "ViweAndAnimation";
 
     public View childView;
     public ValueAnimator animation;
@@ -29,6 +36,31 @@ public class ViweAndAnimation {
                 childView.layout(left, childView.getTop(),
                         left + childView.getMeasuredWidth(),
                         childView.getTop() + childView.getMeasuredHeight());
+            }
+        });
+
+        animation.addListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                ViewGroup parent = (ViewGroup) childView.getParent();
+                if (parent != null){
+                    parent.removeView(childView);
+                }
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+
             }
         });
     }
