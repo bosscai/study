@@ -11,7 +11,9 @@ import androidx.annotation.Nullable;
 
 import com.example.test.danmaku.ViweAndAnimation;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -20,25 +22,27 @@ import java.util.Random;
  * 邮箱：caichengxuan.ccx@alibaba-inc.com
  * 描述：
  */
-public class CustomedLayout extends ViewGroup {
+public class DanmakuLayout extends ViewGroup {
 
     public static final String TAG = "CustomedLayout";
 
     private LinkedList<View> viewQueue = new LinkedList<>();
 
-    public CustomedLayout(Context context) {
+    private List<ViweAndAnimation> animationList = new ArrayList<>();
+
+    public DanmakuLayout(Context context) {
         super(context);
     }
 
-    public CustomedLayout(Context context, @Nullable AttributeSet attrs) {
+    public DanmakuLayout(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public CustomedLayout(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public DanmakuLayout(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
-    public int minGap = 200;
+    public int minGap = 100;
 
     private OnLayoutChangeListener layoutChangeListener = new OnLayoutChangeListener() {
         @Override
@@ -53,29 +57,25 @@ public class CustomedLayout extends ViewGroup {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        int widthSize = MeasureSpec.getSize(widthMeasureSpec);
-        int heightSize = MeasureSpec.getSize(heightMeasureSpec);
-        Log.e(TAG, "onMeasure widthSize: " + widthSize + " heightSize:" + heightSize);
         //测量子布局
         measureChildren(widthMeasureSpec, heightMeasureSpec);
     }
 
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
-        int childCount = getChildCount();
-        int heightOffset = 0;
-        Log.e(TAG, "childCount: " + childCount);
-        Log.e(TAG, "left: " + l + " top: " + t + " right: " + r + " bottom: " + b);
+        Log.i(TAG, "childCount: " + getChildCount() + " left: " + l + " top: " + t + " right: " + r + " bottom: " + b);
     }
 
     public void start() {
-        Log.e(TAG, "start: ");
-        for (int i = 0; i < 10; i++) {
-            TextView textView = new TextView(getContext());
-            textView.setText(getRandomString(new Random().nextInt(20)));
-            viewQueue.addLast(textView);
-            addView(textView);
-        }
+        Log.i(TAG, "start: ");
+        TextView textView = new TextView(getContext());
+        textView.setText("一二三四五六七八九十");
+        TextView textView1 = new TextView(getContext());
+        textView1.setText("一");
+        viewQueue.addLast(textView1);
+        viewQueue.addLast(textView);
+        addView(textView1);
+        addView(textView);
         showNext();
     }
 
@@ -94,21 +94,26 @@ public class CustomedLayout extends ViewGroup {
      * 展示下一条弹幕
      */
     private void showNext() {
-        Log.e(TAG, "showNext: viewQueue.isEmpty: " + viewQueue.isEmpty());
+        Log.i(TAG, "showNext: viewQueue.isEmpty: " + viewQueue.isEmpty());
         if (viewQueue.isEmpty()) return;
         ViweAndAnimation viweAndAnimation = new ViweAndAnimation(getMeasuredWidth());
         viweAndAnimation.childView = viewQueue.poll();
-        //当前的View的宽度
-        int measuredWidth = viweAndAnimation.childView.getMeasuredWidth();
-        //下一个View的宽度
-        if (!viewQueue.isEmpty()){
-            final View lastView = viewQueue.getFirst();
-            if (viweAndAnimation.childView.getMeasuredWidth() > lastView.getMeasuredWidth()){
-                int i = viweAndAnimation.childView.getMeasuredWidth() - lastView.getMeasuredWidth();
-                minGap = MeasureSpec.getSize(i);
-                Log.e(TAG, "minGap: " + minGap);
-            };
-        }
+        animationList.add(viweAndAnimation);
+//        //当前的View的宽度
+//        int curViewWidth = MeasureSpec.getSize(viweAndAnimation.childView.getMeasuredWidth());
+//        //下一个View的宽度
+//        if (!viewQueue.isEmpty()){
+//            //下一个要出来的View
+//            final View nextView = viewQueue.getFirst();
+//            int nextViewWidth = MeasureSpec.getSize(nextView.getMeasuredWidth());
+//            Log.e(TAG, "curViewWidth: " + curViewWidth +" nextViewWidth: " + nextViewWidth );
+//            //当前的view要比后一个view要长
+//            if (curViewWidth > nextView.getMeasuredWidth()){
+//                int i = viweAndAnimation.childView.getMeasuredWidth() - nextView.getMeasuredWidth();
+//                minGap = Math.max(minGap, MeasureSpec.getSize(i));
+//            };
+//        }
+//        Log.e(TAG, "minGap: " + minGap);
         viweAndAnimation.childView.addOnLayoutChangeListener(layoutChangeListener);
         viweAndAnimation.start();
     }
@@ -123,14 +128,23 @@ public class CustomedLayout extends ViewGroup {
     }
 
     public void stop() {
-        Log.e(TAG, "pause: ");
+        Log.e(TAG, "stop: ");
+        for (ViweAndAnimation animation : animationList) {
+            animation.stop();
+        }
     }
 
     public void pause() {
         Log.e(TAG, "pause: ");
+        for (ViweAndAnimation animation : animationList) {
+            animation.pause();
+        }
     }
 
     public void resume() {
-        Log.e(TAG, "pause: ");
+        Log.e(TAG, "resume: ");
+        for (ViweAndAnimation animation : animationList) {
+            animation.resume();
+        }
     }
 }

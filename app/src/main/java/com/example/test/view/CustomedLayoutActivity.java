@@ -2,11 +2,8 @@ package com.example.test.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.animation.ValueAnimator;
 import android.os.Bundle;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.animation.LinearInterpolator;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -14,9 +11,9 @@ import com.example.test.R;
 
 public class CustomedLayoutActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private Button mBtnStart, mBtnPause, mBtnResume;
+    private Button mBtnStart, mBtnPause, mBtnResume, mBtnStop;
 
-    private CustomedLayout mLayout;
+    private DanmakuLayout mLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +29,9 @@ public class CustomedLayoutActivity extends AppCompatActivity implements View.On
 
         mBtnResume = findViewById(R.id.btn_resume);
         mBtnResume.setOnClickListener(this);
+
+        mBtnStop = findViewById(R.id.btn_stop);
+        mBtnStop.setOnClickListener(this);
     }
 
     @Override
@@ -45,6 +45,9 @@ public class CustomedLayoutActivity extends AppCompatActivity implements View.On
                 break;
             case R.id.btn_resume:
                 resumeDanmu();
+                break;
+            case R.id.btn_stop:
+                stopDanmu();
                 break;
             default:
         }
@@ -63,6 +66,11 @@ public class CustomedLayoutActivity extends AppCompatActivity implements View.On
     private void resumeDanmu() {
         Toast.makeText(this, "恢复弹幕", Toast.LENGTH_SHORT).show();
         mLayout.resume();
+    }
+
+    private void stopDanmu() {
+        Toast.makeText(this, "停止弹幕", Toast.LENGTH_SHORT).show();
+        mLayout.stop();
     }
 
 
