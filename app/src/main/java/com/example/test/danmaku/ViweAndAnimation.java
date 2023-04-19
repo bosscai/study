@@ -23,9 +23,10 @@ public class ViweAndAnimation implements ValueAnimator.AnimatorUpdateListener {
     public View childView;
     public ValueAnimator animation;
 
+    //泳道的宽度，这个需要外部传进来
     private int laneWidth;
     //放在第几个泳道，
-    public int laneIndex = 2;
+    public int laneIndex = 0;
 
     public ViweAndAnimation(int getMeasuredWidth) {
         this.laneWidth = getMeasuredWidth;
@@ -80,9 +81,9 @@ public class ViweAndAnimation implements ValueAnimator.AnimatorUpdateListener {
     public void onAnimationUpdate(ValueAnimator animation) {
         float animatedFraction = animation.getAnimatedFraction();
         int left = (int) (laneWidth - animatedFraction * (laneWidth + childView.getMeasuredWidth()));
-        childView.layout(left,  100 * laneIndex,
+        childView.layout(left,  childView.getMeasuredHeight() * laneIndex,
                 left + childView.getMeasuredWidth(),
-                childView.getMeasuredHeight() + 100 * laneIndex);
+                childView.getMeasuredHeight() + childView.getMeasuredHeight() * laneIndex);
         Log.e(TAG, "right: " + childView.getRight() + " left: " + childView.getLeft() + " bottom: " + childView.getBottom() + " top: " + childView.getTop());
     }
 }

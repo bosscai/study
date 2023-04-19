@@ -98,22 +98,8 @@ public class DanmakuLayout extends ViewGroup {
         if (viewQueue.isEmpty()) return;
         ViweAndAnimation viweAndAnimation = new ViweAndAnimation(getMeasuredWidth());
         viweAndAnimation.childView = viewQueue.poll();
+        viweAndAnimation.laneIndex = new Random().nextInt(20);
         animationList.add(viweAndAnimation);
-//        //当前的View的宽度
-//        int curViewWidth = MeasureSpec.getSize(viweAndAnimation.childView.getMeasuredWidth());
-//        //下一个View的宽度
-//        if (!viewQueue.isEmpty()){
-//            //下一个要出来的View
-//            final View nextView = viewQueue.getFirst();
-//            int nextViewWidth = MeasureSpec.getSize(nextView.getMeasuredWidth());
-//            Log.e(TAG, "curViewWidth: " + curViewWidth +" nextViewWidth: " + nextViewWidth );
-//            //当前的view要比后一个view要长
-//            if (curViewWidth > nextView.getMeasuredWidth()){
-//                int i = viweAndAnimation.childView.getMeasuredWidth() - nextView.getMeasuredWidth();
-//                minGap = Math.max(minGap, MeasureSpec.getSize(i));
-//            };
-//        }
-//        Log.e(TAG, "minGap: " + minGap);
         viweAndAnimation.childView.addOnLayoutChangeListener(layoutChangeListener);
         viweAndAnimation.start();
     }
