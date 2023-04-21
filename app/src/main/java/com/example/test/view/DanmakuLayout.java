@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 
+import com.example.test.danmaku.Lane;
 import com.example.test.danmaku.ViweAndAnimation;
 
 import java.util.ArrayList;
@@ -24,11 +25,15 @@ import java.util.Random;
  */
 public class DanmakuLayout extends ViewGroup {
 
-    public static final String TAG = "CustomedLayout";
+    public static final String TAG = "DanmakuLayout";
 
     private LinkedList<View> viewQueue = new LinkedList<>();
 
     private List<ViweAndAnimation> animationList = new ArrayList<>();
+
+    private boolean blockShow = false;
+
+    private Lane lane = new Lane(1080);
 
     public DanmakuLayout(Context context) {
         super(context);
@@ -40,6 +45,7 @@ public class DanmakuLayout extends ViewGroup {
 
     public DanmakuLayout(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        Log.i(TAG, "getMeasuredWidth: " + getMeasuredWidth());
     }
 
     public int minGap = 100;
@@ -59,24 +65,41 @@ public class DanmakuLayout extends ViewGroup {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         //测量子布局
         measureChildren(widthMeasureSpec, heightMeasureSpec);
+        Log.i(TAG, "onMeasure: " + getMeasuredWidth());
     }
 
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
         Log.i(TAG, "childCount: " + getChildCount() + " left: " + l + " top: " + t + " right: " + r + " bottom: " + b);
+        Log.i(TAG, "onLayout: " + getMeasuredWidth());
     }
 
     public void start() {
         Log.i(TAG, "start: ");
-        TextView textView = new TextView(getContext());
-        textView.setText("一二三四五六七八九十");
-        TextView textView1 = new TextView(getContext());
-        textView1.setText("一");
-        viewQueue.addLast(textView1);
-        viewQueue.addLast(textView);
-        addView(textView1);
-        addView(textView);
         showNext();
+    }
+
+    /**
+     * 添加弹幕数据
+     */
+    public void addDanmaku(View view) {
+        Log.i(TAG, "addItem: ");
+        viewQueue.addLast(view);
+        addView(view);
+    }
+
+    public void addDanmaku(int len) {
+        Log.i(TAG, "addItem: ");
+        for (int i=0; i<len; i++){
+            TextView textView = generateView(len);
+            addDanmaku(textView);
+        }
+    }
+
+    public TextView generateView(int len) {
+        TextView textView = new TextView(getContext());
+        textView.setText(getRandomString(len));
+        return textView;
     }
 
     public String getRandomString(int length) {
@@ -95,22 +118,14 @@ public class DanmakuLayout extends ViewGroup {
      */
     private void showNext() {
         Log.i(TAG, "showNext: viewQueue.isEmpty: " + viewQueue.isEmpty());
+        if (blockShow) return;
         if (viewQueue.isEmpty()) return;
         ViweAndAnimation viweAndAnimation = new ViweAndAnimation(getMeasuredWidth());
         viweAndAnimation.childView = viewQueue.poll();
-        viweAndAnimation.laneIndex = new Random().nextInt(20);
+//        viweAndAnimation.laneIndex = new Random().nextInt(20);
         animationList.add(viweAndAnimation);
         viweAndAnimation.childView.addOnLayoutChangeListener(layoutChangeListener);
         viweAndAnimation.start();
-    }
-
-    /**
-     * 添加弹幕数据
-     * @param view
-     */
-    public void addItem(View view){
-        viewQueue.addLast(view);
-        addView(view);
     }
 
     public void stop() {

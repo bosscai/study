@@ -45,5 +45,12 @@
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toRightOf="@+id/btn_resume"/>
+    <Button
+        android:id="@+id/btn_add"
+        android:text="添加"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/btn_stop"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

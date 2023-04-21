@@ -10,6 +10,8 @@ import android.view.ViewParent;
 import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
 
+import java.util.LinkedList;
+
 /**
  * 作者：蔡承轩（阿蔡）
  * 时间：2023/4/19 07:26
@@ -77,6 +79,10 @@ public class ViweAndAnimation implements ValueAnimator.AnimatorUpdateListener {
         animation.cancel();
     }
 
+    /**
+     * 这里是弹幕滚动的动画
+     * @param animation
+     */
     @Override
     public void onAnimationUpdate(ValueAnimator animation) {
         float animatedFraction = animation.getAnimatedFraction();
@@ -84,6 +90,5 @@ public class ViweAndAnimation implements ValueAnimator.AnimatorUpdateListener {
         childView.layout(left,  childView.getMeasuredHeight() * laneIndex,
                 left + childView.getMeasuredWidth(),
                 childView.getMeasuredHeight() + childView.getMeasuredHeight() * laneIndex);
-        Log.e(TAG, "right: " + childView.getRight() + " left: " + childView.getLeft() + " bottom: " + childView.getBottom() + " top: " + childView.getTop());
     }
 }

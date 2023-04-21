@@ -11,7 +11,7 @@ import com.example.test.R;
 
 public class CustomedLayoutActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private Button mBtnStart, mBtnPause, mBtnResume, mBtnStop;
+    private Button mBtnStart, mBtnPause, mBtnResume, mBtnStop, mBtnAdd;
 
     private DanmakuLayout mLayout;
 
@@ -32,6 +32,9 @@ public class CustomedLayoutActivity extends AppCompatActivity implements View.On
 
         mBtnStop = findViewById(R.id.btn_stop);
         mBtnStop.setOnClickListener(this);
+
+        mBtnAdd = findViewById(R.id.btn_add);
+        mBtnAdd.setOnClickListener(this);
     }
 
     @Override
@@ -49,6 +52,8 @@ public class CustomedLayoutActivity extends AppCompatActivity implements View.On
             case R.id.btn_stop:
                 stopDanmu();
                 break;
+            case R.id.btn_add:
+                addDanmaku();
             default:
         }
     }
@@ -71,6 +76,11 @@ public class CustomedLayoutActivity extends AppCompatActivity implements View.On
     private void stopDanmu() {
         Toast.makeText(this, "停止弹幕", Toast.LENGTH_SHORT).show();
         mLayout.stop();
+    }
+
+    private void addDanmaku() {
+        Toast.makeText(this, "添加弹幕", Toast.LENGTH_SHORT).show();
+        mLayout.addDanmaku(5);
     }
 
 

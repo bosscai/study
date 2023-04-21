@@ -2,6 +2,7 @@ package com.example.test.danmaku;
 
 import android.animation.Animator;
 import android.animation.ValueAnimator;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
 
@@ -14,6 +15,8 @@ import java.util.LinkedList;
  * 描述：弹幕泳道宽度
  */
 public class Lane {
+
+    public static final String TAG = "Lane";
 
     private int laneWidth;
 
@@ -51,7 +54,9 @@ public class Lane {
     public void showNext(){
         //还未到展示下一个弹幕，则直接返回
         if (blockShow) return;
-        currentView.removeOnLayoutChangeListener(layoutChangeListener);
+        if (currentView != null){
+            currentView.removeOnLayoutChangeListener(layoutChangeListener);
+        }
         //从泳道队列中取出弹幕视图
         currentView = viewQueue.poll();
         isEmpty = false;
@@ -102,6 +107,6 @@ public class Lane {
     }
 
     private void recycle(View view){
-
+        Log.e(TAG, "recycle View :" + this);
     }
 }
