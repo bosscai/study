@@ -1,16 +1,10 @@
 package com.example.test.danmaku;
 
 import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewParent;
-import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
-
-import java.util.LinkedList;
 
 /**
  * 作者：蔡承轩（阿蔡）
@@ -18,9 +12,9 @@ import java.util.LinkedList;
  * 邮箱：caichengxuan.ccx@alibaba-inc.com
  * 描述：
  */
-public class ViweAndAnimation implements ValueAnimator.AnimatorUpdateListener {
+public class Danmaku implements ValueAnimator.AnimatorUpdateListener {
 
-    public static final String TAG = "ViweAndAnimation";
+    public static final String TAG = "Danmaku";
 
     public View childView;
     public ValueAnimator animation;
@@ -30,7 +24,7 @@ public class ViweAndAnimation implements ValueAnimator.AnimatorUpdateListener {
     //放在第几个泳道，
     public int laneIndex = 0;
 
-    public ViweAndAnimation(int getMeasuredWidth) {
+    public Danmaku(int getMeasuredWidth) {
         this.laneWidth = getMeasuredWidth;
         this.animation = ValueAnimator.ofFloat(1.0f);
         animation.setDuration(5000L);

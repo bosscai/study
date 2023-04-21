@@ -10,7 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 
 import com.example.test.danmaku.Lane;
-import com.example.test.danmaku.ViweAndAnimation;
+import com.example.test.danmaku.Danmaku;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -29,7 +29,7 @@ public class DanmakuLayout extends ViewGroup {
 
     private LinkedList<View> viewQueue = new LinkedList<>();
 
-    private List<ViweAndAnimation> animationList = new ArrayList<>();
+    private List<Danmaku> animationList = new ArrayList<>();
 
     private boolean blockShow = false;
 
@@ -120,31 +120,31 @@ public class DanmakuLayout extends ViewGroup {
         Log.i(TAG, "showNext: viewQueue.isEmpty: " + viewQueue.isEmpty());
         if (blockShow) return;
         if (viewQueue.isEmpty()) return;
-        ViweAndAnimation viweAndAnimation = new ViweAndAnimation(getMeasuredWidth());
-        viweAndAnimation.childView = viewQueue.poll();
+        Danmaku danmaku = new Danmaku(getMeasuredWidth());
+        danmaku.childView = viewQueue.poll();
 //        viweAndAnimation.laneIndex = new Random().nextInt(20);
-        animationList.add(viweAndAnimation);
-        viweAndAnimation.childView.addOnLayoutChangeListener(layoutChangeListener);
-        viweAndAnimation.start();
+        animationList.add(danmaku);
+        danmaku.childView.addOnLayoutChangeListener(layoutChangeListener);
+        danmaku.start();
     }
 
     public void stop() {
         Log.e(TAG, "stop: ");
-        for (ViweAndAnimation animation : animationList) {
+        for (Danmaku animation : animationList) {
             animation.stop();
         }
     }
 
     public void pause() {
         Log.e(TAG, "pause: ");
-        for (ViweAndAnimation animation : animationList) {
+        for (Danmaku animation : animationList) {
             animation.pause();
         }
     }
 
     public void resume() {
         Log.e(TAG, "resume: ");
-        for (ViweAndAnimation animation : animationList) {
+        for (Danmaku animation : animationList) {
             animation.resume();
         }
     }
