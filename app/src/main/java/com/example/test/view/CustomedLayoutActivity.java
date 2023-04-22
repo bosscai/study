@@ -3,6 +3,7 @@ package com.example.test.view;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -10,9 +11,12 @@ import android.widget.Toast;
 import com.example.test.R;
 import com.example.test.danmaku.Danmaku;
 
+import java.util.Random;
+
 public class CustomedLayoutActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private Button mBtnStart, mBtnPause, mBtnResume, mBtnStop, mBtnAdd;
+    private Button mBtnStart, mBtnPause, mBtnResume, mBtnStop, mBtnAdd,
+    mBtnAdds;
 
     private DanmakuLayout mLayout;
 
@@ -36,6 +40,9 @@ public class CustomedLayoutActivity extends AppCompatActivity implements View.On
 
         mBtnAdd = findViewById(R.id.btn_add);
         mBtnAdd.setOnClickListener(this);
+
+        mBtnAdds = findViewById(R.id.btn_adds);
+        mBtnAdds.setOnClickListener(this);
     }
 
     @Override
@@ -55,6 +62,8 @@ public class CustomedLayoutActivity extends AppCompatActivity implements View.On
                 break;
             case R.id.btn_add:
                 addDanmaku();
+            case R.id.btn_adds:
+                addDanmakuList();
             default:
         }
     }
@@ -83,6 +92,27 @@ public class CustomedLayoutActivity extends AppCompatActivity implements View.On
         Toast.makeText(this, "添加弹幕", Toast.LENGTH_SHORT).show();
         Danmaku danmaku = new Danmaku("Test");
         mLayout.addDanmaku(danmaku);
+    }
+
+    private void addDanmakuList() {
+        Toast.makeText(this, "添加多条弹幕", Toast.LENGTH_SHORT).show();
+        for (int i=0; i<10; i++){
+            Danmaku danmaku = new Danmaku(getRandomString(5));
+            danmaku.laneIndex = i % 5;
+            Log.e("TAG", "addDanmakuList: " + (i%5) );
+            mLayout.addDanmaku(danmaku);
+        }
+    }
+
+    public String getRandomString(int length) {
+        String str = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        Random random = new Random();
+        StringBuffer sb = new StringBuffer();
+        for (int i = 0; i < length; i++) {
+            int number = random.nextInt(62);
+            sb.append(str.charAt(number));
+        }
+        return sb.toString();
     }
 
 

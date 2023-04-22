@@ -9,13 +9,15 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 
-import com.example.test.danmaku.Lane;
 import com.example.test.danmaku.Danmaku;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
+import java.util.Set;
 
 /**
  * 作者：蔡承轩（阿蔡）
@@ -29,9 +31,15 @@ public class DanmakuLayout extends ViewGroup {
 
     private LinkedList<View> viewQueue = new LinkedList<>();
 
+    private LinkedList<Danmaku> danmakuQueue = new LinkedList<>();
+
     private List<Danmaku> animationList = new ArrayList<>();
 
     private boolean blockShow = false;
+
+    private int maxLane = 3;
+
+    private HashMap<Integer, Yongdap> laneMap;
 
     public DanmakuLayout(Context context) {
         super(context);
@@ -72,6 +80,13 @@ public class DanmakuLayout extends ViewGroup {
         Log.i(TAG, "onLayout: " + getMeasuredWidth());
     }
 
+    public void init(){
+        laneMap = new HashMap<>(maxLane);
+        for (int i=0; i<maxLane; i++){
+            laneMap.put(i, new Yongdap(getMeasuredWidth(), 100, i));
+        }
+    }
+
     public void start() {
         Log.i(TAG, "start: ");
         showNext();
@@ -83,31 +98,25 @@ public class DanmakuLayout extends ViewGroup {
     public void addDanmaku(Danmaku danmaku) {
         Log.i(TAG, "addItem: ");
         TextView textView = generateView(danmaku.text);
+        danmakuQueue.addLast(danmaku);
         viewQueue.addLast(textView);
         addView(textView);
     }
 
-    public TextView generateView(int len) {
-        TextView textView = new TextView(getContext());
-        textView.setText(getRandomString(len));
-        return textView;
+    /**
+     * 添加弹幕数据
+     */
+    public void addDanmaku(List<Danmaku> danmakus) {
+        Log.i(TAG, "addItems: ");
+        for (int i=0; i<danmakus.size(); i++){
+            laneMap.get(i).addDanmaku(danmakus.get(i));
+        }
     }
 
     public TextView generateView(CharSequence text) {
         TextView textView = new TextView(getContext());
         textView.setText(text);
         return textView;
-    }
-
-    public String getRandomString(int length) {
-        String str = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-        Random random = new Random();
-        StringBuffer sb = new StringBuffer();
-        for (int i = 0; i < length; i++) {
-            int number = random.nextInt(62);
-            sb.append(str.charAt(number));
-        }
-        return sb.toString();
     }
 
 
@@ -146,9 +155,9 @@ public class DanmakuLayout extends ViewGroup {
         Log.i(TAG, "showNext: viewQueue.isEmpty: " + viewQueue.isEmpty());
         if (blockShow) return;
         if (viewQueue.isEmpty()) return;
-        Danmaku danmaku = new Danmaku(getMeasuredWidth());
+        Danmaku danmaku = danmakuQueue.poll();
+        danmaku.laneWidth = getMeasuredWidth();
         danmaku.childView = viewQueue.poll();
-//        viweAndAnimation.laneIndex = new Random().nextInt(20);
         animationList.add(danmaku);
         danmaku.childView.addOnLayoutChangeListener(layoutChangeListener);
         danmaku.start();

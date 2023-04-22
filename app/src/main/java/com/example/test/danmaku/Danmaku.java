@@ -2,6 +2,7 @@ package com.example.test.danmaku;
 
 import android.animation.Animator;
 import android.animation.ValueAnimator;
+import android.util.Log;
 import android.view.TextureView;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,17 +23,13 @@ public class Danmaku implements ValueAnimator.AnimatorUpdateListener {
 
     public CharSequence text;
 
-    //泳道的宽度，这个需要外部传进来
-    private int laneWidth;
+    //泳道的长度，这个需要外部传进来
+    public int laneWidth;
     //放在第几个泳道，
     public int laneIndex = 0;
 
-    public Danmaku(CharSequence text){
+    public Danmaku(CharSequence text) {
         this.text = text;
-    }
-
-    public Danmaku(int getMeasuredWidth) {
-        this.laneWidth = getMeasuredWidth;
         this.animation = ValueAnimator.ofFloat(1.0f);
         animation.setDuration(5000L);
         animation.setInterpolator(new LinearInterpolator());

@@ -53,4 +53,12 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/btn_stop"/>
 
+    <Button
+        android:id="@+id/btn_adds"
+        android:text="添加多条弹幕"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="@id/btn_add"
+        app:layout_constraintBottom_toTopOf="@+id/btn_stop"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
