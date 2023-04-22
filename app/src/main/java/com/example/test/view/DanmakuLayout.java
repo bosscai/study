@@ -33,8 +33,6 @@ public class DanmakuLayout extends ViewGroup {
 
     private boolean blockShow = false;
 
-    private Lane lane = new Lane(1080);
-
     public DanmakuLayout(Context context) {
         super(context);
     }
@@ -82,23 +80,22 @@ public class DanmakuLayout extends ViewGroup {
     /**
      * 添加弹幕数据
      */
-    public void addDanmaku(View view) {
+    public void addDanmaku(Danmaku danmaku) {
         Log.i(TAG, "addItem: ");
-        viewQueue.addLast(view);
-        addView(view);
-    }
-
-    public void addDanmaku(int len) {
-        Log.i(TAG, "addItem: ");
-        for (int i=0; i<len; i++){
-            TextView textView = generateView(len);
-            addDanmaku(textView);
-        }
+        TextView textView = generateView(danmaku.text);
+        viewQueue.addLast(textView);
+        addView(textView);
     }
 
     public TextView generateView(int len) {
         TextView textView = new TextView(getContext());
         textView.setText(getRandomString(len));
+        return textView;
+    }
+
+    public TextView generateView(CharSequence text) {
+        TextView textView = new TextView(getContext());
+        textView.setText(text);
         return textView;
     }
 
@@ -111,6 +108,35 @@ public class DanmakuLayout extends ViewGroup {
             sb.append(str.charAt(number));
         }
         return sb.toString();
+    }
+
+
+    public void show(Danmaku danmaku) {
+//        post(new Runnable() {
+//            @Override
+//            public void run() {
+                TextView childView = generateView(danmaku.text);
+//                bindView(danmaku, childView);
+
+        measureChild(childView, MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED),
+                MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED));
+        addView(childView);
+        int left = getMeasuredWidth();
+        int top = childView.getMeasuredHeight();
+        childView.layout((int)(left * 0.5f), top, (int)(left * 0.5f) + childView.getMeasuredWidth(), top + childView.getMeasuredHeight());
+//            }
+//        });
+//            /**
+//             * put child view into [Lane]
+//             */
+//            laneMap[top]?.add(child, data) ?: run {
+//                Lane(measuredWidth).also {
+//                    it.add(child, data)
+//                    laneMap[top] = it
+//                    it.showNext()
+//                }
+//            }
+//        }
     }
 
     /**

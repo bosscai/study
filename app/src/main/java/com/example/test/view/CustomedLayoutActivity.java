@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.test.R;
+import com.example.test.danmaku.Danmaku;
 
 public class CustomedLayoutActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -80,7 +81,8 @@ public class CustomedLayoutActivity extends AppCompatActivity implements View.On
 
     private void addDanmaku() {
         Toast.makeText(this, "添加弹幕", Toast.LENGTH_SHORT).show();
-        mLayout.addDanmaku(5);
+        Danmaku danmaku = new Danmaku("Test");
+        mLayout.addDanmaku(danmaku);
     }
 
 
