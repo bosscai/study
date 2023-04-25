@@ -2,8 +2,6 @@ package com.example.test.danmaku;
 
 import android.animation.Animator;
 import android.animation.ValueAnimator;
-import android.util.Log;
-import android.view.TextureView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.LinearInterpolator;

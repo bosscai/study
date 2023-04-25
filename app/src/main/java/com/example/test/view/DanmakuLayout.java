@@ -1,23 +1,23 @@
 package com.example.test.view;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.LinearInterpolator;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 
 import com.example.test.danmaku.Danmaku;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
-import java.util.Random;
-import java.util.Set;
 
 /**
  * 作者：蔡承轩（阿蔡）
@@ -30,12 +30,9 @@ public class DanmakuLayout extends ViewGroup {
     public static final String TAG = "DanmakuLayout";
 
     private LinkedList<View> viewQueue = new LinkedList<>();
+    private LinkedList<Animator> animatorQueue = new LinkedList<>();
 
     private LinkedList<Danmaku> danmakuQueue = new LinkedList<>();
-
-    private List<Danmaku> animationList = new ArrayList<>();
-
-    private boolean blockShow = false;
 
     private int maxLane = 3;
 
@@ -87,11 +84,6 @@ public class DanmakuLayout extends ViewGroup {
         }
     }
 
-    public void start() {
-        Log.i(TAG, "start: ");
-        showNext();
-    }
-
     /**
      * 添加弹幕数据
      */
@@ -119,67 +111,61 @@ public class DanmakuLayout extends ViewGroup {
         return textView;
     }
 
-
-    public void show(Danmaku danmaku) {
-//        post(new Runnable() {
-//            @Override
-//            public void run() {
-                TextView childView = generateView(danmaku.text);
-//                bindView(danmaku, childView);
-
-        measureChild(childView, MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED),
-                MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED));
-        addView(childView);
-        int left = getMeasuredWidth();
-        int top = childView.getMeasuredHeight();
-        childView.layout((int)(left * 0.5f), top, (int)(left * 0.5f) + childView.getMeasuredWidth(), top + childView.getMeasuredHeight());
-//            }
-//        });
-//            /**
-//             * put child view into [Lane]
-//             */
-//            laneMap[top]?.add(child, data) ?: run {
-//                Lane(measuredWidth).also {
-//                    it.add(child, data)
-//                    laneMap[top] = it
-//                    it.showNext()
-//                }
-//            }
-//        }
-    }
-
     /**
      * 展示下一条弹幕
      */
     private void showNext() {
         Log.i(TAG, "showNext: viewQueue.isEmpty: " + viewQueue.isEmpty());
-        if (blockShow) return;
-        if (viewQueue.isEmpty()) return;
+        if (viewQueue.isEmpty() || danmakuQueue.isEmpty()) return;
+        View curView = viewQueue.poll();
         Danmaku danmaku = danmakuQueue.poll();
-        danmaku.laneWidth = getMeasuredWidth();
-        danmaku.childView = viewQueue.poll();
-        animationList.add(danmaku);
-        danmaku.childView.addOnLayoutChangeListener(layoutChangeListener);
-        danmaku.start();
+        curView.addOnLayoutChangeListener(layoutChangeListener);
+        ValueAnimator valueAnimator = ValueAnimator.ofFloat(1.0f);
+        //把动画加进来
+        animatorQueue.addLast(valueAnimator);
+        valueAnimator.setDuration(5000L);
+        valueAnimator.setInterpolator(new LinearInterpolator());
+        valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                float fraction = animation.getAnimatedFraction();
+                float left = (getMeasuredWidth() - fraction * (getMeasuredWidth() + curView.getMeasuredWidth()));
+                curView.layout((int)left, curView.getTop(), (int) left + curView.getMeasuredWidth(), curView.getTop() + curView.getMeasuredWidth());
+            }
+        });
+        valueAnimator.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                super.onAnimationEnd(animation);
+                viewQueue.addLast(curView);
+                animatorQueue.poll();
+            }
+        });
+        valueAnimator.start();
+    }
+
+    public void start() {
+        Log.e(TAG, "start: ");
+        showNext();
     }
 
     public void stop() {
         Log.e(TAG, "stop: ");
-        for (Danmaku animation : animationList) {
-            animation.stop();
+        for (Animator animation : animatorQueue) {
+            animation.cancel();
         }
     }
 
     public void pause() {
         Log.e(TAG, "pause: ");
-        for (Danmaku animation : animationList) {
+        for (Animator animation : animatorQueue) {
             animation.pause();
         }
     }
 
     public void resume() {
         Log.e(TAG, "resume: ");
-        for (Danmaku animation : animationList) {
+        for (Animator animation : animatorQueue) {
             animation.resume();
         }
     }
