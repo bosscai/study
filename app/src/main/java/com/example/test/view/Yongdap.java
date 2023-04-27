@@ -56,10 +56,6 @@ public class Yongdap implements View.OnLayoutChangeListener {
     private void showNext(){
         Log.e(TAG, "showNext: ");
         if (dataList.isEmpty()) return;
-        Danmaku poll = dataList.poll();
-        poll.laneIndex = index;
-        poll.childView.addOnLayoutChangeListener(this);
-        poll.start();
     }
 
     @Override

@@ -62,8 +62,10 @@ public class CustomedLayoutActivity extends AppCompatActivity implements View.On
                 break;
             case R.id.btn_add:
                 addDanmaku();
+                break;
             case R.id.btn_adds:
                 addDanmakuList();
+                break;
             default:
         }
     }
@@ -92,6 +94,7 @@ public class CustomedLayoutActivity extends AppCompatActivity implements View.On
         Toast.makeText(this, "添加弹幕", Toast.LENGTH_SHORT).show();
         Danmaku danmaku = new Danmaku("Test");
         mLayout.addDanmaku(danmaku);
+        mLayout.addDanmaku(new Danmaku("1234567890"));
     }
 
     private void addDanmakuList() {

@@ -15,9 +15,8 @@ import androidx.annotation.Nullable;
 
 import com.example.test.danmaku.Danmaku;
 
-import java.util.HashMap;
 import java.util.LinkedList;
-import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * 作者：蔡承轩（阿蔡）
@@ -29,14 +28,16 @@ public class DanmakuLayout extends ViewGroup {
 
     public static final String TAG = "DanmakuLayout";
 
+    /**
+     * viewQueue 盛放View弹幕View的队列
+     * animatorQueue 盛放弹幕动画的队列
+     * gapsQueue 盛放弹幕间间距的队列
+     */
     private LinkedList<View> viewQueue = new LinkedList<>();
-    private LinkedList<Animator> animatorQueue = new LinkedList<>();
+    private CopyOnWriteArrayList<Animator> animatorQueue = new CopyOnWriteArrayList<>();
+    private LinkedList<Integer> mGapQueue = new LinkedList<>();
 
     private LinkedList<Danmaku> danmakuQueue = new LinkedList<>();
-
-    private int maxLane = 3;
-
-    private HashMap<Integer, Yongdap> laneMap;
 
     public DanmakuLayout(Context context) {
         super(context);
@@ -77,13 +78,6 @@ public class DanmakuLayout extends ViewGroup {
         Log.i(TAG, "onLayout: " + getMeasuredWidth());
     }
 
-    public void init(){
-        laneMap = new HashMap<>(maxLane);
-        for (int i=0; i<maxLane; i++){
-            laneMap.put(i, new Yongdap(getMeasuredWidth(), 100, i));
-        }
-    }
-
     /**
      * 添加弹幕数据
      */
@@ -93,16 +87,6 @@ public class DanmakuLayout extends ViewGroup {
         danmakuQueue.addLast(danmaku);
         viewQueue.addLast(textView);
         addView(textView);
-    }
-
-    /**
-     * 添加弹幕数据
-     */
-    public void addDanmaku(List<Danmaku> danmakus) {
-        Log.i(TAG, "addItems: ");
-        for (int i=0; i<danmakus.size(); i++){
-            laneMap.get(i).addDanmaku(danmakus.get(i));
-        }
     }
 
     public TextView generateView(CharSequence text) {
@@ -122,7 +106,11 @@ public class DanmakuLayout extends ViewGroup {
         curView.addOnLayoutChangeListener(layoutChangeListener);
         ValueAnimator valueAnimator = ValueAnimator.ofFloat(1.0f);
         //把动画加进来
-        animatorQueue.addLast(valueAnimator);
+//        int curViewWidth = curView.getMeasuredWidth();
+//        Log.e(TAG, "showNext: " + curViewWidth );
+//        double i = curViewWidth * (1.0) / (curViewWidth + getMeasuredWidth());
+//        animatorQueue.add(valueAnimator);
+//        valueAnimator.setDuration(5000L*((curViewWidth)/(curViewWidth + getMeasuredWidth())));
         valueAnimator.setDuration(5000L);
         valueAnimator.setInterpolator(new LinearInterpolator());
         valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
@@ -138,7 +126,7 @@ public class DanmakuLayout extends ViewGroup {
             public void onAnimationEnd(Animator animation) {
                 super.onAnimationEnd(animation);
                 viewQueue.addLast(curView);
-                animatorQueue.poll();
+                animatorQueue.remove(animation);
             }
         });
         valueAnimator.start();
@@ -152,7 +140,7 @@ public class DanmakuLayout extends ViewGroup {
     public void stop() {
         Log.e(TAG, "stop: ");
         for (Animator animation : animatorQueue) {
-            animation.cancel();
+            animation.end();
         }
     }
 
