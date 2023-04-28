@@ -35,7 +35,6 @@ public class DanmakuLayout extends ViewGroup {
      */
     private LinkedList<View> viewQueue = new LinkedList<>();
     private CopyOnWriteArrayList<Animator> animatorQueue = new CopyOnWriteArrayList<>();
-    private LinkedList<Integer> mGapQueue = new LinkedList<>();
 
     private LinkedList<Danmaku> danmakuQueue = new LinkedList<>();
 
@@ -52,6 +51,9 @@ public class DanmakuLayout extends ViewGroup {
         Log.i(TAG, "getMeasuredWidth: " + getMeasuredWidth());
     }
 
+    /**
+     * 规定的两条弹幕最小间距
+     */
     public int minGap = 100;
 
     private OnLayoutChangeListener layoutChangeListener = new OnLayoutChangeListener() {
@@ -60,6 +62,7 @@ public class DanmakuLayout extends ViewGroup {
             if (MeasureSpec.getSize(getMeasuredWidth()) - right > minGap) {
                 v.removeOnLayoutChangeListener(this);
                 showNext();
+                Log.e(TAG, "minGap: " + minGap);
             }
         }
     };
@@ -105,12 +108,24 @@ public class DanmakuLayout extends ViewGroup {
         Danmaku danmaku = danmakuQueue.poll();
         curView.addOnLayoutChangeListener(layoutChangeListener);
         ValueAnimator valueAnimator = ValueAnimator.ofFloat(1.0f);
-        //把动画加进来
-//        int curViewWidth = curView.getMeasuredWidth();
-//        Log.e(TAG, "showNext: " + curViewWidth );
-//        double i = curViewWidth * (1.0) / (curViewWidth + getMeasuredWidth());
-//        animatorQueue.add(valueAnimator);
-//        valueAnimator.setDuration(5000L*((curViewWidth)/(curViewWidth + getMeasuredWidth())));
+        int curViewWidth = curView.getMeasuredWidth();
+        /***
+         * 这是上一个它前一个弹幕的长度
+         * 1、如果当前弹幕的长度小于下一个弹幕的长度，这个时候需要计算一个新的Gap
+         * 2、如果当前弹幕的长度大于上一个弹幕的长度，这个时候设置一个最小的Gap
+         */
+        if (!danmakuQueue.isEmpty()){
+            View nextView = viewQueue.peek();
+            int nextViewWidth = nextView.getMeasuredWidth();
+            if (curViewWidth < nextViewWidth){
+                //如果当前的弹幕小于下一条弹幕，需要设置一下两条弹幕的间距
+                int curGap = nextViewWidth - curViewWidth;
+                minGap = Math.max(minGap, curGap);
+            } else {
+                //如果当前的弹幕大于下一条弹幕，需要设置一下两条弹幕的间距
+                minGap = 100;
+            }
+        }
         valueAnimator.setDuration(5000L);
         valueAnimator.setInterpolator(new LinearInterpolator());
         valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {

@@ -16,13 +16,8 @@ public class Danmaku {
 
     public static final String TAG = "Danmaku";
 
-//    public View childView;
-    private ValueAnimator animation;
-
     public CharSequence text;
 
-    //泳道的长度，这个需要外部传进来
-    public int laneWidth;
     //放在第几个泳道，
     public int laneIndex = 0;
 

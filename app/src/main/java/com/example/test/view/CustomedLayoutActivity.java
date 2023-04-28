@@ -100,9 +100,9 @@ public class CustomedLayoutActivity extends AppCompatActivity implements View.On
     private void addDanmakuList() {
         Toast.makeText(this, "添加多条弹幕", Toast.LENGTH_SHORT).show();
         for (int i=0; i<10; i++){
-            Danmaku danmaku = new Danmaku(getRandomString(5));
-            danmaku.laneIndex = i % 5;
-            Log.e("TAG", "addDanmakuList: " + (i%5) );
+            Danmaku danmaku = new Danmaku(getRandomString(new Random().nextInt(10)));
+//            danmaku.laneIndex = i % 5;
+//            Log.e("TAG", "addDanmakuList: " + (i%5) );
             mLayout.addDanmaku(danmaku);
         }
     }
