@@ -14,6 +14,7 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 
 import com.example.test.danmaku.Danmaku;
+import com.example.test.danmaku.SimplePool;
 
 import java.util.LinkedList;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -38,23 +39,44 @@ public class DanmakuLayout extends ViewGroup {
 
     private LinkedList<Danmaku> danmakuQueue = new LinkedList<>();
 
+    private SimplePool<View> viewPool;
+
     public DanmakuLayout(Context context) {
         super(context);
+        init();
     }
 
     public DanmakuLayout(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
+        init();
     }
 
     public DanmakuLayout(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        Log.i(TAG, "getMeasuredWidth: " + getMeasuredWidth());
+        init();
+    }
+
+    private void init(){
+        viewPool = new SimplePool<>(2);
     }
 
     /**
      * 规定的两条弹幕最小间距
      */
-    public int minGap = 100;
+    private int minGap = 100;
+
+    public int getMinGap() {
+        return minGap;
+    }
+
+    public void setMinGap(int minGap) {
+        if (minGap <= 0){
+            Log.e(TAG, "setMinGap must less 0: " + minGap);
+            this.minGap = 1;
+        } else {
+            this.minGap = minGap;
+        }
+    }
 
     private OnLayoutChangeListener layoutChangeListener = new OnLayoutChangeListener() {
         @Override
@@ -62,7 +84,6 @@ public class DanmakuLayout extends ViewGroup {
             if (MeasureSpec.getSize(getMeasuredWidth()) - right > minGap) {
                 v.removeOnLayoutChangeListener(this);
                 showNext();
-                Log.e(TAG, "minGap: " + minGap);
             }
         }
     };
@@ -89,20 +110,28 @@ public class DanmakuLayout extends ViewGroup {
         TextView textView = generateView(danmaku.text);
         danmakuQueue.addLast(danmaku);
         viewQueue.addLast(textView);
-        addView(textView);
     }
 
+    /**
+     * 生成View的时候，要去View池判断
+     * @param text
+     * @return
+     */
     public TextView generateView(CharSequence text) {
-        TextView textView = new TextView(getContext());
-        textView.setText(text);
-        return textView;
+        TextView acquire = (TextView) viewPool.acquire();
+        if (acquire == null){
+            acquire = new TextView(getContext());
+        }
+        acquire.setText(text);
+        addView(acquire);
+        return acquire;
     }
 
     /**
      * 展示下一条弹幕
      */
     private void showNext() {
-        Log.i(TAG, "showNext: viewQueue.isEmpty: " + viewQueue.isEmpty());
+        Log.i(TAG, "getChildCount: " + getChildCount() );
         if (viewQueue.isEmpty() || danmakuQueue.isEmpty()) return;
         View curView = viewQueue.poll();
         Danmaku danmaku = danmakuQueue.poll();
@@ -126,6 +155,7 @@ public class DanmakuLayout extends ViewGroup {
                 minGap = 100;
             }
         }
+        Log.i(TAG, "minGap: " + minGap);
         valueAnimator.setDuration(5000L);
         valueAnimator.setInterpolator(new LinearInterpolator());
         valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
@@ -140,8 +170,10 @@ public class DanmakuLayout extends ViewGroup {
             @Override
             public void onAnimationEnd(Animator animation) {
                 super.onAnimationEnd(animation);
-                viewQueue.addLast(curView);
+                viewPool.release(curView);
+                removeView(curView);
                 animatorQueue.remove(animation);
+                Log.i(TAG, "mPoolSize: " + viewPool.getPoolSize());
             }
         });
         valueAnimator.start();

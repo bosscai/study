@@ -17,7 +17,7 @@ public class SimplePool<T> implements Pool<T>{
     //池对象容器
     private final Object[] mPool;
     //池大小
-    private int mPoolSize;
+    private int mPoolSize = 0;
 
     public SimplePool(int maxSize) {
         if (maxSize <= 0){
@@ -25,6 +25,10 @@ public class SimplePool<T> implements Pool<T>{
         }
         //构造池对象容器
         mPool = new Object[maxSize];
+    }
+
+    public int getPoolSize() {
+        return mPoolSize;
     }
 
     @Override
