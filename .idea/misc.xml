@@ -10,9 +10,13 @@
         <entry key="app/src/main/res/layout/activity_customed_layout.xml" value="0.20729166666666668" />
         <entry key="app/src/main/res/layout/activity_first.xml" value="0.14447463768115942" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.15096251266464034" />
+        <entry key="app/src/main/res/layout/activity_mvvmactivity.xml" value="0.44427083333333334" />
         <entry key="app/src/main/res/layout/activity_screen_shot.xml" value="0.5546875" />
         <entry key="app/src/main/res/layout/activity_second.xml" value="0.3572916666666667" />
         <entry key="app/src/main/res/layout/activity_third.xml" value="0.31979166666666664" />
+        <entry key="app/src/main/res/layout/fragment_layout_buttom.xml" value="0.44427083333333334" />
+        <entry key="app/src/main/res/layout/fragment_layout_button.xml" value="0.1953125" />
+        <entry key="app/src/main/res/layout/fragment_layout_show.xml" value="0.1953125" />
         <entry key="app/src/main/res/layout/item_layout_main.xml" value="0.14387031408308004" />
         <entry key="app/src/main/res/layout/iv_vs_content.xml" value="0.5715579710144928" />
       </map>

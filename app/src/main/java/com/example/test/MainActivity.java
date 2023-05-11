@@ -18,6 +18,7 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import com.example.test.adapter.MainRecyclerViewAdapter;
+import com.example.test.mvvm.MVVMActivity;
 import com.example.test.view.CustomedLayoutActivity;
 
 import java.util.ArrayList;
@@ -69,6 +70,7 @@ public class MainActivity extends AppCompatActivity implements MainRecyclerViewA
         data.add("Enable");
         data.add("ScreenShot");
         data.add("CustomedLayout");
+        data.add("MVVM");
     }
 
     private void initView() {
@@ -111,6 +113,9 @@ public class MainActivity extends AppCompatActivity implements MainRecyclerViewA
                 break;
             case 5:
                 startActivity(new Intent(this, CustomedLayoutActivity.class));
+                break;
+            case 6:
+                startActivity(new Intent(this, MVVMActivity.class));
                 break;
         }
     }
