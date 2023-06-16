@@ -14,6 +14,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Test">
         <activity
+            android:name=".ActionStudyActivity"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:scheme="https"
+                    android:host="web.wapa.taobao.com"
+                    android:path="/app/hummer-diantao/feedbackdetail/Home" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".mvvm.MVVMActivity"
             android:exported="true" />
         <activity

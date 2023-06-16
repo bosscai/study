@@ -71,6 +71,7 @@ public class MainActivity extends AppCompatActivity implements MainRecyclerViewA
         data.add("ScreenShot");
         data.add("CustomedLayout");
         data.add("MVVM");
+        data.add("ActionStudy");
     }
 
     private void initView() {
@@ -116,6 +117,12 @@ public class MainActivity extends AppCompatActivity implements MainRecyclerViewA
                 break;
             case 6:
                 startActivity(new Intent(this, MVVMActivity.class));
+                break;
+            case 7:
+                Intent intent = new Intent();
+                Uri uri = Uri.parse("https://web.wapa.taobao.com/app/hummer-diantao/feedbackdetail/Home?wh_weex=true&weex_mode=dom");;
+                intent.setData(uri);
+                startActivity(intent);
                 break;
         }
     }
