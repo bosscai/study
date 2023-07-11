@@ -11,13 +11,9 @@ public class MVVMActivity extends AppCompatActivity {
 
     public static final String TAG = "MVVMActivity";
 
-    private TestViewModel model;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mvvmactivity);
-
-        model = new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory()).get(TestViewModel.class);
     }
 }

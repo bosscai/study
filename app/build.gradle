@@ -1,14 +1,23 @@
 plugins {
     id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-android-extensions'
 }
 
+repositories {
+    google()
+    mavenCentral()
+    maven {
+        url "http://mvnrepo.alibaba-inc.com/mvn/repository"
+    }
+}
 android {
     compileSdk 32
     buildToolsVersion '30.0.3'
 
     defaultConfig {
         applicationId "com.example.test"
-        minSdk 21
+        minSdk 28
         targetSdk 32
         versionCode 1
         versionName "1.0"
@@ -40,4 +49,13 @@ dependencies {
 //
 //    //定制容器：https://yuque.antfin.com/ei894w/vf59gk/iweln3
 //    providedCompile('com.taobao.live:tblive_dynamic_sdk:2.30.0.11221740')
+    implementation('com.taobao.android:weex_ability:0.10.2.0-android')
+    implementation('com.taobao.android:weex_framework:0.10.3.3-framework-android')
+    implementation('com.taobao.android:qking:0.10.0.3-android')
+    implementation('com.taobao.android:unicorn:0.10.3.1-android')
+    implementation('com.taobao.android:weex_uikit:0.10.2.1-android')
+    implementation('com.taobao.android:weex_plugin:0.10.2.1-android')
+    implementation('com.taobao.android:riverlogger:2.0.22')
+
+    implementation('com.alibaba:fastjson:2.0.34')
 }

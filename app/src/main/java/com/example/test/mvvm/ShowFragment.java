@@ -39,7 +39,6 @@ public class ShowFragment extends BaseFragment{
                     mTvContent.setText(s);
                 }
             });
-            Log.e(TAG, "initView: " + model.getStr().hashCode() +  " this: " + this);
         }
     }
 }
