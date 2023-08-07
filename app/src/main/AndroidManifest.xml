@@ -1,108 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.test" >
+          package="com.example.test">
 
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> <!-- 手机震动的权限 -->
-    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/> <!-- 手机震动的权限 -->
+    <uses-permission android:name="android.permission.VIBRATE"/>
 
     <application
-        android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
-        android:supportsRtl="true"
-        android:theme="@style/Theme.Test" >
+            android:allowBackup="true"
+            android:icon="@mipmap/ic_launcher"
+            android:label="@string/app_name"
+            android:roundIcon="@mipmap/ic_launcher_round"
+            android:supportsRtl="true"
+            android:theme="@style/Theme.Test">
         <activity
-            android:name=".WeexStudyActivity"
-            android:exported="false" >
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
+                android:name=".ComponentActivity"
+                android:exported="true">
         </activity>
         <activity
-            android:name=".ActionStudyActivity"
-            android:exported="true" >
+                android:name=".WeexStudyActivity"
+                android:exported="false">
+        </activity>
+        <activity
+                android:name=".ActionStudyActivity"
+                android:exported="true">
             <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
+                <action android:name="android.intent.action.VIEW"/>
 
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
 
                 <data
-                    android:host="web.wapa.taobao.com"
-                    android:path="/app/hummer-diantao/feedbackdetail/Home"
-                    android:scheme="https" />
+                        android:host="web.wapa.taobao.com"
+                        android:path="/app/hummer-diantao/feedbackdetail/Home"
+                        android:scheme="https"/>
             </intent-filter>
         </activity>
         <activity
-            android:name=".mvvm.MVVMActivity"
-            android:exported="true" />
+                android:name=".mvvm.MVVMActivity"
+                android:exported="true"/>
         <activity
-            android:name=".view.CustomedLayoutActivity"
-            android:exported="true" />
+                android:name=".view.CustomedLayoutActivity"
+                android:exported="true"/>
         <activity
-            android:name=".ScreenShotActivity"
-            android:exported="true" />
+                android:name=".ScreenShotActivity"
+                android:exported="true"/>
         <activity
-            android:name=".ThirdActivity"
-            android:exported="true" />
+                android:name=".ThirdActivity"
+                android:exported="true"/>
         <activity
-            android:name=".SecondActivity"
-            android:exported="true" >
+                android:name=".SecondActivity"
+                android:exported="true">
             <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
+                <action android:name="android.intent.action.VIEW"/>
 
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
 
                 <data
-                    android:host="welcome"
-                    android:scheme="http" />
+                        android:host="welcome"
+                        android:scheme="http"/>
             </intent-filter>
         </activity>
         <activity
-            android:name=".FirstActivity"
-            android:exported="true" >
+                android:name=".FirstActivity"
+                android:exported="true">
             <intent-filter>
-                <action android:name="android.intent.action.TEST" />
+                <action android:name="android.intent.action.TEST"/>
 
-                <category android:name="android.intent.category.TEST_1" />
-                <category android:name="android.intent.category.TEST_2" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
+                <category android:name="android.intent.category.TEST_1"/>
+                <category android:name="android.intent.category.TEST_2"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
 
                 <data
-                    android:mimeType="application/pdf"
-                    android:scheme="http" />
+                        android:mimeType="application/pdf"
+                        android:scheme="http"/>
                 <data
-                    android:mimeType="application/pdf"
-                    android:scheme="https" />
+                        android:mimeType="application/pdf"
+                        android:scheme="https"/>
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
-            android:exported="true" >
+                android:name=".MainActivity"
+                android:exported="true">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
 
         <receiver
-            android:name=".MyBroadcastReceiver"
-            android:exported="true"
-            android:icon="@drawable/ic_launcher_foreground"
-            android:label="@string/receiver_name" >
+                android:name=".MyBroadcastReceiver"
+                android:exported="true"
+                android:icon="@drawable/ic_launcher_foreground"
+                android:label="@string/receiver_name">
             <intent-filter>
 
                 <!-- <action android:name="android.intent.action.AIRPLANE_MODE"/> -->
                 <!-- <action android:name="android.intent.action.BOOT_COMPLETED"/> -->
                 <!-- <action android:name="android.intent.action.SCREEN_ON"/> -->
                 <!-- <action android:name="android.intent.action.SCREEN_OFF"/> -->
-                <action android:name="com.example.test.MY_BROADCAST" />
+                <action android:name="com.example.test.MY_BROADCAST"/>
             </intent-filter>
         </receiver>
     </application>

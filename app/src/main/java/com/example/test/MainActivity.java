@@ -72,6 +72,7 @@ public class MainActivity extends AppCompatActivity implements MainRecyclerViewA
         data.add("CustomedLayout");
         data.add("MVVM");
         data.add("ActionStudy");
+        data.add("SPStudy");
     }
 
     private void initView() {
@@ -123,6 +124,9 @@ public class MainActivity extends AppCompatActivity implements MainRecyclerViewA
                 Uri uri = Uri.parse("https://web.wapa.taobao.com/app/hummer-diantao/feedbackdetail/Home?wh_weex=true&weex_mode=dom");;
                 intent.setData(uri);
                 startActivity(intent);
+                break;
+            case 8:
+                startActivity(new Intent(this, ComponentActivity.class));
                 break;
         }
     }
