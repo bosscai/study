@@ -1,6 +1,5 @@
-package com.example.test.mvvm;
+package com.example.test.mvvm.fragment;
 
-import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -9,6 +8,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelStoreOwner;
 
 import com.example.test.R;
+import com.example.test.mvvm.viewmodel.TestViewModel;
 
 /**
  * 作者：蔡承轩（阿蔡）
@@ -16,7 +16,7 @@ import com.example.test.R;
  * 邮箱：caichengxuan.ccx@alibaba-inc.com
  * 描述：
  */
-public class ShowFragment extends BaseFragment{
+public class ShowFragment extends BaseFragment {
 
     private TextView mTvContent;
     private TestViewModel model;
@@ -24,6 +24,11 @@ public class ShowFragment extends BaseFragment{
     @Override
     protected int setLayoutId() {
         return R.layout.fragment_layout_show;
+    }
+
+    @Override
+    protected void initData() {
+
     }
 
     @Override

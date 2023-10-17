@@ -1,11 +1,14 @@
 package com.example.test.mvvm.fragment;
 
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.lifecycle.ViewModelProvider;
+
 import com.example.test.R;
-import com.example.test.mvvm.fragment.BaseFragment;
+import com.example.test.mvvm.viewmodel.VideoCommentViewModel;
 import com.example.test.view.CircleImageView;
 
 /**
@@ -18,6 +21,8 @@ public class RightOperationFragment extends BaseFragment {
 
     private CircleImageView mAvatarView;
     private ImageView mFollowView;
+    private VideoCommentViewModel commentViewModel;
+    private ViewGroup mParentComment;
 
 
     @Override
@@ -26,9 +31,15 @@ public class RightOperationFragment extends BaseFragment {
     }
 
     @Override
+    protected void initData() {
+        commentViewModel = new ViewModelProvider(getActivity(), new ViewModelProvider.NewInstanceFactory()).get(VideoCommentViewModel.class);
+    }
+
+    @Override
     protected void initView() {
         mAvatarView = initChildViewById(R.id.img_avatar);
         mFollowView = initChildViewById(R.id.img_follow);
+        mParentComment = initChildViewById(R.id.parent_comment);
         mFollowView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -36,6 +47,15 @@ public class RightOperationFragment extends BaseFragment {
 
             }
         });
+        mParentComment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (commentViewModel != null){
+                    commentViewModel.sendCommentOpenAction();
+                }
+            }
+        });
+
 
     }
 }

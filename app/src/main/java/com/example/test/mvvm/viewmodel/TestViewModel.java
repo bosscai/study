@@ -1,8 +1,7 @@
-package com.example.test.mvvm;
+package com.example.test.mvvm.viewmodel;
 
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
+import com.example.test.mvvm.model.*;
 
 /**
  * 作者：蔡承轩（阿蔡）
@@ -16,7 +15,7 @@ public class TestViewModel extends ViewModel {
 
     public DTLiveData<String> getStr() {
         if (str == null){
-            str = new DTLiveData<>();
+            str = new DTLiveData<String>();
         }
         return str;
     }
