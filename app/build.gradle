@@ -14,18 +14,20 @@ repositories {
     }
 }
 android {
-    compileSdk 32
+    compileSdkVersion 30
     buildToolsVersion '30.0.3'
 
     defaultConfig {
         applicationId "com.example.test"
-        minSdk 28
-        targetSdk 32
+        minSdk 26
+        targetSdk 30
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        registerTransform(new InjectTransform())
+        ndk {
+            abiFilters "armeabi-v7a", "arm64-v8a", "x86"
+        }
+//        registerTransform(new InjectTransform())
     }
 
     buildTypes {
@@ -38,7 +40,6 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-    compileSdkVersion 30
 }
 
 dependencies {
@@ -49,16 +50,7 @@ dependencies {
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
-//
-//    //定制容器：https://yuque.antfin.com/ei894w/vf59gk/iweln3
-//    providedCompile('com.taobao.live:tblive_dynamic_sdk:2.30.0.11221740')
-    implementation('com.taobao.android:weex_ability:0.10.2.0-android')
-    implementation('com.taobao.android:weex_framework:0.10.3.3-framework-android')
-    implementation('com.taobao.android:qking:0.10.0.3-android')
-    implementation('com.taobao.android:unicorn:0.10.3.1-android')
-    implementation('com.taobao.android:weex_uikit:0.10.2.1-android')
-    implementation('com.taobao.android:weex_plugin:0.10.2.1-android')
-    implementation('com.taobao.android:riverlogger:2.0.22')
-
     implementation('com.alibaba:fastjson:2.0.34')
+
+//    implementation(project(':utils'))
 }
