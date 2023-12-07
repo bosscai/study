@@ -2,19 +2,19 @@
 buildscript {
     ext.kotlin_version = "1.3.72"
     repositories {
-        google()
-        mavenCentral()
         flatDir {
             dirs 'libs'
         }
-//        maven {
-//            url "http://mvnrepo.alibaba-inc.com/mvn/repository"
-//        }
-//        maven { url "https://jitpack.io" }
-//        maven { url "http://mvn.test.alipay.net:8081/artifactory/content/groups/alipay-mobile" }
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+        maven { url 'http://maven.aliyun.com/nexus/content/repositories/jcenter' }
+        maven { url 'http://maven.aliyun.com/nexus/content/repositories/google' }
+        maven { url 'http://maven.aliyun.com/nexus/content/repositories/gradle-plugin' }
+
+        google()
+        mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.2.0'
+        classpath 'com.android.tools.build:gradle:7.0.0'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "org.jetbrains.kotlin:kotlin-android-extensions:$kotlin_version"
 
