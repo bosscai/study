@@ -13,6 +13,9 @@ repositories {
         url "http://mvnrepo.alibaba-inc.com/mvn/repository"
     }
 }
+println("==================")
+println(isModule)
+println(USER_NAME)
 android {
     compileSdkVersion 30
     buildToolsVersion '30.0.3'
@@ -51,6 +54,15 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     implementation('com.alibaba:fastjson:2.0.34')
+    //插桩相关业务
+    implementation 'com.android.tools.build:gradle:4.2.0'
 
 //    implementation(project(':utils'))
+}
+
+
+task("hello") {
+    doLast {
+        println("helper")
+    }
 }
