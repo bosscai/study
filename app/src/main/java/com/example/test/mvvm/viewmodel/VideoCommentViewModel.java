@@ -15,7 +15,7 @@ public class VideoCommentViewModel extends ViewModel {
 
     public DTLiveData<Boolean> getCommentAction() {
         if (mCommentAction == null) {
-            mCommentAction = new DTLiveData<Boolean>();
+            mCommentAction = new DTLiveData<>();
         }
         return mCommentAction;
     }

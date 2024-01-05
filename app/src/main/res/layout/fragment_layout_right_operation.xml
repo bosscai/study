@@ -24,6 +24,28 @@
             android:src="@mipmap/ic_dt_live_follow"/>
     </FrameLayout>
 
+    <!--点赞控件-->
+    <LinearLayout
+        android:id="@+id/parent_like"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="20dp">
+        <ImageView
+            android:id="@+id/img_like"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:src="@mipmap/ic_dt_video_like"/>
+
+        <TextView
+            android:id="@+id/tv_num_like"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="9999"
+            android:layout_gravity="center"/>
+    </LinearLayout>
+
 <!--评论控件的布局-->
     <LinearLayout
         android:id="@+id/parent_comment"
