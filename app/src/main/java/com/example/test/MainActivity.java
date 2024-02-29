@@ -9,11 +9,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.Manifest;
 import android.content.ComponentName;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.pm.PackageManager;
-import android.net.Uri;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -29,6 +26,7 @@ public class MainActivity extends AppCompatActivity implements MainRecyclerViewA
     private RecyclerView recyclerView;
     private List<String> data;
     private MyBroadcastReceiver receiver;
+    public static final String TAG = "MainActivity";
 
     public static final int PERMISSION_REQUEST_CODE = 100;
 
@@ -49,12 +47,12 @@ public class MainActivity extends AppCompatActivity implements MainRecyclerViewA
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        receiver = new MyBroadcastReceiver();
-        IntentFilter intentFilter = new IntentFilter();
-        intentFilter.addAction(Intent.ACTION_SCREEN_ON);
-        intentFilter.addAction(Intent.ACTION_SCREEN_OFF);
-
-        registerReceiver(receiver, intentFilter);
+//        receiver = new MyBroadcastReceiver();
+//        IntentFilter intentFilter = new IntentFilter();
+//        intentFilter.addAction(Intent.ACTION_SCREEN_ON);
+//        intentFilter.addAction(Intent.ACTION_SCREEN_OFF);
+//
+//        registerReceiver(receiver, intentFilter);
 
         initData();
         initView();
@@ -71,8 +69,8 @@ public class MainActivity extends AppCompatActivity implements MainRecyclerViewA
         data.add("ScreenShot");
         data.add("CustomedLayout");
         data.add("MVVM");
-        data.add("ActionStudy");
         data.add("SPStudy");
+        data.add("PoolActivity");
     }
 
     private void initView() {
@@ -89,17 +87,13 @@ public class MainActivity extends AppCompatActivity implements MainRecyclerViewA
         Toast.makeText(this, "这是第" + (pos + 1) + "个", Toast.LENGTH_SHORT).show();
         switch (pos) {
             case 0: {
-                Intent intent = new Intent();
+                Intent intent = new Intent("android.appwidget.action.APPWIDGET_UPDATE");
                 intent.setComponent(new ComponentName("com.example.test","com.example.test.MyBroadcastReceiver"));
                 sendBroadcast(intent);
             }
             break;
 
             case 1:{
-//                Intent intent = new Intent();
-//                intent.setAction("android.intent.action.TEST");
-//                intent.addCategory("android.intent.category.TEST_1");
-//                intent.addCategory("android.intent.category.TEST_2");
                 startActivity(new Intent(this, FirstActivity.class));
             }
             break;
@@ -120,13 +114,10 @@ public class MainActivity extends AppCompatActivity implements MainRecyclerViewA
                 startActivity(new Intent(this, MVVMActivity.class));
                 break;
             case 7:
-                Intent intent = new Intent();
-                Uri uri = Uri.parse("https://web.wapa.taobao.com/app/hummer-diantao/feedbackdetail/Home?wh_weex=true&weex_mode=dom");;
-                intent.setData(uri);
-                startActivity(intent);
+                startActivity(new Intent(this, ComponentActivity.class));
                 break;
             case 8:
-                startActivity(new Intent(this, ComponentActivity.class));
+                startActivity(new Intent(this, ThreadPoolActivity.class));
                 break;
         }
     }
