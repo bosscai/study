@@ -16,6 +16,11 @@ repositories {
 println("==================")
 println(isModule)
 println(USER_NAME)
+
+task sys {
+    println("*******")
+    println(System.getProperties())
+}
 android {
     compileSdkVersion 30
     buildToolsVersion '30.0.3'
@@ -30,18 +35,43 @@ android {
         ndk {
             abiFilters "armeabi-v7a", "arm64-v8a", "x86"
         }
-//        registerTransform(new InjectTransform())
+        registerTransform(new InjectTransform())
+    }
+//变种，打马甲包使用
+//    flavorDimensions "CCX"
+//    productFlavors {
+//        app1{
+//            applicationId "com.example.test1"
+//            resValue "string", "app_name", "demo"
+//            manifestPlaceholders = [app_icon : "@drawable/beauty_1.png"]
+//        }
+//        app2{
+//            applicationId "com.example.test2"
+//            resValue "string", "app_name", "demo1"
+//            manifestPlaceholders = [app_icon : "@drawable/beauty_2.png"]
+//        }
+//    }
+
+    lintOptions{
+        abortOnError = false
     }
 
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField("String", "NAME", '"CCX_RELEASE"')
+        }
+        debug {
+            buildConfigField("String", "NAME", '"CCX_DEBUG"')
         }
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+    }
+    buildFeatures {
+        viewBinding true
     }
 }
 
@@ -55,8 +85,6 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     implementation('com.alibaba:fastjson:2.0.34')
     //插桩相关业务
-    implementation 'com.android.tools.build:gradle:4.2.0'
-
 //    implementation(project(':utils'))
 }
 
