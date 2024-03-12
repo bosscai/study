@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<appwidget-provider xmlns:andoird="http://schemas.android.com/apk/res/android"
+    andoird:initialLayout="@layout/widget_simple"
+    andoird:minWidth="40dp"
+    andoird:minHeight="40dp"
+    andoird:previewImage="@drawable/beauty_2"
+    andoird:resizeMode="vertical|horizontal"
+    andoird:updatePeriodMillis="10000"
+    andoird:widgetCategory="home_screen" />
