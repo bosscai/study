@@ -10,7 +10,7 @@ repositories {
     google()
     mavenCentral()
     maven {
-        url "http://mvnrepo.alibaba-inc.com/mvn/repository"
+        url 'https://mirrors.cloud.tencent.com/nexus/repository/maven-public'
     }
 }
 println("==================")
@@ -84,6 +84,13 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     implementation('com.alibaba:fastjson:2.0.34')
+    // https://mvnrepository.com/artifact/com.squareup.okhttp3/okhttp
+//    implementation 'com.squareup.okhttp3:okhttp:3.9.0'
+    // https://mvnrepository.com/artifact/org.greenrobot/eventbus
+//    implementation 'org.greenrobot:eventbus:3.3.1'
+    // https://mvnrepository.com/artifact/com.squareup.leakcanary/leakcanary-android
+//    implementation 'com.squareup.leakcanary:leakcanary-android:1.6.3'
+
     //插桩相关业务
 //    implementation(project(':utils'))
 }
