@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.example.test.adapter.MainRecyclerViewAdapter;
 import com.example.test.mvvm.MVVMActivity;
 import com.example.test.view.CustomedLayoutActivity;
+import com.example.test.webview.WebViewActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,13 +48,6 @@ public class MainActivity extends AppCompatActivity implements MainRecyclerViewA
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        receiver = new MyBroadcastReceiver();
-//        IntentFilter intentFilter = new IntentFilter();
-//        intentFilter.addAction(Intent.ACTION_SCREEN_ON);
-//        intentFilter.addAction(Intent.ACTION_SCREEN_OFF);
-//
-//        registerReceiver(receiver, intentFilter);
-
         initData();
         initView();
 
@@ -70,7 +64,7 @@ public class MainActivity extends AppCompatActivity implements MainRecyclerViewA
         data.add("CustomedLayout");
         data.add("MVVM");
         data.add("SPStudy");
-        data.add("PoolActivity");
+        data.add("webView");
     }
 
     private void initView() {
@@ -93,11 +87,9 @@ public class MainActivity extends AppCompatActivity implements MainRecyclerViewA
             }
             break;
 
-            case 1:{
+            case 1:
                 startActivity(new Intent(this, FirstActivity.class));
-            }
-            break;
-
+                break;
             case 2:
                 startActivity(new Intent(this, SecondActivity.class));
                 break;
@@ -117,7 +109,7 @@ public class MainActivity extends AppCompatActivity implements MainRecyclerViewA
                 startActivity(new Intent(this, ComponentActivity.class));
                 break;
             case 8:
-                startActivity(new Intent(this, ThreadPoolActivity.class));
+                startActivity(new Intent(this, WebViewActivity.class));
                 break;
         }
     }
@@ -138,9 +130,9 @@ public class MainActivity extends AppCompatActivity implements MainRecyclerViewA
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == PERMISSION_REQUEST_CODE){
-            for (int i=0; i < grantResults.length; i++){
-                if(grantResults[i] == PackageManager.PERMISSION_DENIED){
+        if (requestCode == PERMISSION_REQUEST_CODE) {
+            for (int i = 0; i < grantResults.length; i++) {
+                if (grantResults[i] == PackageManager.PERMISSION_DENIED) {
 
                 }
             }

@@ -19,7 +19,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Test">
-
+        <activity
+            android:name=".webview.WebViewActivity"
+            android:exported="true" />
         <activity
             android:name=".ThreadPoolActivity"
             android:exported="true" />
@@ -105,12 +107,10 @@
                 <action android:name="com.example.test.MY_BROADCAST" />
             </intent-filter>
         </receiver>
-
         <receiver
             android:name=".widget.SimpleWidgetProvider"
             android:exported="false"
             android:label="SimpleWidget">
-
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
