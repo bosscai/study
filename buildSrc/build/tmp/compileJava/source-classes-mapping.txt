@@ -1,4 +1,0 @@
-com/example/test/InjectTransform.java
- com.example.test.InjectTransform
- com.example.test.InjectTransform$1
- com.example.test.InjectTransform$2

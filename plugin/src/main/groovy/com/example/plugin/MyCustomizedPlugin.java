@@ -1,5 +1,8 @@
 package com.example.plugin;
 
+import com.android.build.gradle.AppExtension;
+import com.android.build.gradle.LibraryExtension;
+
 import org.gradle.api.Plugin;
 import org.gradle.api.Project;
 
@@ -9,9 +12,10 @@ import org.gradle.api.Project;
 public class MyCustomizedPlugin implements Plugin<Project> {
     @Override
     public void apply(Project project) {
-        System.out.println("---------------------------------Start---------------------------------");
+        System.out.println("-----------------MyCustomizedPlugin Start----------------");
         String name = project.getName();
         System.out.println(name);
-        System.out.println("---------------------------------End---------------------------------");
+        final AppExtension appExtension = project.getExtensions().getByType(AppExtension.class);
+        appExtension.registerTransform(new CustomizedTransform(project));
     }
 }

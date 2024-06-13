@@ -3,7 +3,7 @@ apply plugin: 'maven'
 
 repositories {
     maven {
-        url "http://mvnrepo.alibaba-inc.com/mvn/repository"
+        url 'https://mirrors.cloud.tencent.com/nexus/repository/maven-public'
     }
     google()
     jcenter()
