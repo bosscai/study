@@ -63,8 +63,9 @@ public class MainActivity extends AppCompatActivity implements MainRecyclerViewA
         data.add("ScreenShot");
         data.add("CustomedLayout");
         data.add("MVVM");
-        data.add("SPStudy");
+        data.add("TabLayout");
         data.add("webView");
+        data.add("AIDL");
     }
 
     private void initView() {
@@ -110,6 +111,9 @@ public class MainActivity extends AppCompatActivity implements MainRecyclerViewA
                 break;
             case 8:
                 startActivity(new Intent(this, WebViewActivity.class));
+                break;
+            case 9:
+                startActivity(new Intent(this, AIDLActivity.class));
                 break;
         }
     }
