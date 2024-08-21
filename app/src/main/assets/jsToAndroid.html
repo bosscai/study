@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Carson_Ho</title>
+    <script>
+        function callAndroid(){
+            document.location = "js://webview?name=ccx&age=29";
+        }
+        function callAndroid1(){
+            document.location = "js://webview1?name=wn&age=30";
+        }
+        function getAndroidReturn(result){
+            alert("result: " + result);
+            setTimeout(null, 3000)
+        }
+    </script>
+</head>
+<body>
+<button type="button" id="button" onclick="callAndroid()">点击调用Android代码</button>
+<button type="button" id="button1" onclick="callAndroid1()">点击调用Android-1代码</button>
+</body>
+</html>

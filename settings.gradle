@@ -1,4 +1,4 @@
-rootProject.name = "Test"
+rootProject.name = "Study"
 include ':app'
 include ':utils'
 include ':plugin'

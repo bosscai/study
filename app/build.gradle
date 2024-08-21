@@ -4,7 +4,7 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-android-extensions'
-    id 'com.example.firstplugin'
+//    id 'com.example.firstplugin'
 }
 
 repositories {
@@ -82,10 +82,14 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'com.google.android.material:material:1.2.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
-    testImplementation 'junit:junit:4.+'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+//    testImplementation 'junit:junit:4.+'
+//    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+//    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     implementation('com.alibaba:fastjson:2.0.34')
+// https://mvnrepository.com/artifact/com.google.code.gson/gson
+    //引入gson为了与项目中的保持一致
+    implementation 'com.google.code.gson:gson:2.8.9'
+
     // https://mvnrepository.com/artifact/com.squareup.okhttp3/okhttp
 //    implementation 'com.squareup.okhttp3:okhttp:3.9.0'
     // https://mvnrepository.com/artifact/org.greenrobot/eventbus

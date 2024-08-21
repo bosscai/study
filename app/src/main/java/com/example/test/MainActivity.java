@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.Manifest;
 import android.content.ComponentName;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.widget.Toast;
@@ -26,10 +27,11 @@ public class MainActivity extends AppCompatActivity implements MainRecyclerViewA
 
     private RecyclerView recyclerView;
     private List<String> data;
-    private MyBroadcastReceiver receiver;
     public static final String TAG = "MainActivity";
 
     public static final int PERMISSION_REQUEST_CODE = 100;
+
+    private NetworkStateReceiver networkStateReceiver;
 
     /**
      * 需要申请的权限
@@ -52,6 +54,11 @@ public class MainActivity extends AppCompatActivity implements MainRecyclerViewA
         initView();
 
         initPermission();
+
+        networkStateReceiver = new NetworkStateReceiver();
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction("android.net.conn.CONNECTIVITY_CHANGE");
+        registerReceiver(networkStateReceiver, intentFilter);
     }
 
     private void initData() {
@@ -147,6 +154,6 @@ public class MainActivity extends AppCompatActivity implements MainRecyclerViewA
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        unregisterReceiver(receiver);
+        unregisterReceiver(networkStateReceiver);
     }
 }

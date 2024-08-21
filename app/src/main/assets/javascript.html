@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Carson</title>
+<body>
+<h3>测试--Android调用了JS--界面</h3>
+</body>
+<script>
+        function callAndroid(){
+            alert('Android调用了JS的callAndroid方法');
+            object.hello('hello');
+        }
+         function callJS(){
+            alert('Android调用了JS的callbackJS方法');
+            return "方法结束"
+        }
+
+</script>
+</head>
+<body>
+<button type="button" id="button1" onclick="callAndroid()">点击调用Android代码</button>
+</body>
+</html>
