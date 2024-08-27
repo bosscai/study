@@ -12,7 +12,10 @@ import android.content.ComponentName;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
+import android.webkit.URLUtil;
 import android.widget.Toast;
 
 import com.example.test.adapter.MainRecyclerViewAdapter;
@@ -20,6 +23,7 @@ import com.example.test.mvvm.MVVMActivity;
 import com.example.test.view.CustomedLayoutActivity;
 import com.example.test.webview.WebViewActivity;
 
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -63,7 +67,7 @@ public class MainActivity extends AppCompatActivity implements MainRecyclerViewA
 
     private void initData() {
         data = new ArrayList<>();
-        data.add("广播");
+        data.add("DexClassLoader");
         data.add("Activity的隐式启动");
         data.add("ViewStub学习");
         data.add("Enable");
@@ -89,9 +93,8 @@ public class MainActivity extends AppCompatActivity implements MainRecyclerViewA
         Toast.makeText(this, "这是第" + (pos + 1) + "个", Toast.LENGTH_SHORT).show();
         switch (pos) {
             case 0: {
-                Intent intent = new Intent("android.appwidget.action.APPWIDGET_UPDATE");
-                intent.setComponent(new ComponentName("com.example.test","com.example.test.MyBroadcastReceiver"));
-                sendBroadcast(intent);
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("ccx://com.faw.android/dexClassLoader"));
+                startActivity(intent);
             }
             break;
 

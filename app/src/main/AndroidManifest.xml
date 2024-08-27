@@ -3,7 +3,7 @@
     package="com.example.test">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> <!-- 手机震动的权限 -->
@@ -22,11 +22,25 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Test">
         <activity
+            android:name=".classloader.DexClassLoaderActivity"
+            android:exported="false">
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT" />
+                <action android:name="android.intent.action.VIEW" />
+                <data
+                    android:scheme="ccx"
+                    android:host="com.faw.android"
+                    android:path="/dexClassLoader" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".AIDLActivity"
             android:exported="false" />
 
-        <service android:name=".service.RemoteService"
-            android:process=":remote"/>
+        <service
+            android:name=".service.RemoteService"
+            android:process=":remote" />
+
         <activity
             android:name=".webview.WebViewActivity"
             android:exported="true" />
