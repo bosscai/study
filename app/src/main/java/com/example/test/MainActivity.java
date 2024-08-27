@@ -19,6 +19,7 @@ import android.webkit.URLUtil;
 import android.widget.Toast;
 
 import com.example.test.adapter.MainRecyclerViewAdapter;
+import com.example.test.model.MainItem;
 import com.example.test.mvvm.MVVMActivity;
 import com.example.test.view.CustomedLayoutActivity;
 import com.example.test.webview.WebViewActivity;
@@ -27,10 +28,10 @@ import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements MainRecyclerViewAdapter.onClickListener {
+public class MainActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
-    private List<String> data;
+    private List<MainItem> data;
     public static final String TAG = "MainActivity";
 
     public static final int PERMISSION_REQUEST_CODE = 100;
@@ -67,16 +68,37 @@ public class MainActivity extends AppCompatActivity implements MainRecyclerViewA
 
     private void initData() {
         data = new ArrayList<>();
-        data.add("DexClassLoader");
-        data.add("Activity的隐式启动");
-        data.add("ViewStub学习");
-        data.add("Enable");
-        data.add("ScreenShot");
-        data.add("CustomedLayout");
-        data.add("MVVM");
-        data.add("TabLayout");
-        data.add("webView");
-        data.add("AIDL");
+        data.add(new MainItem("DexClassLoader", (position, title) -> {
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("ccx://com.faw.android/dexClassLoader"));
+            startActivity(intent);
+        }));
+        data.add(new MainItem("Activity的启动", ((position, title) -> {
+            startActivity(new Intent(this, FirstActivity.class));
+        })));
+        data.add(new MainItem("ViewStub学习", (position, title) -> {
+            startActivity(new Intent(this, SecondActivity.class));
+        }));
+        data.add(new MainItem("Enable", (position, title) -> {
+            startActivity(new Intent(this, ThirdActivity.class));
+        }));
+        data.add(new MainItem("ScreenShot", (position, title) -> {
+            startActivity(new Intent(this, ScreenShotActivity.class));
+        }));
+        data.add(new MainItem("CustomedLayout", (position, title) -> {
+            startActivity(new Intent(this, CustomedLayoutActivity.class));
+        }));
+        data.add(new MainItem("MVVM", (position, title) -> {
+            startActivity(new Intent(this, MVVMActivity.class));
+        }));
+        data.add(new MainItem("TabLayout", ((position, title) -> {
+            startActivity(new Intent(this, ComponentActivity.class));
+        })));
+        data.add(new MainItem("webView", ((position, title) -> {
+            startActivity(new Intent(this, WebViewActivity.class));
+        })));
+        data.add(new MainItem("AIDL", ((position, title) -> {
+            startActivity(new Intent(this, AIDLActivity.class));
+        })));
     }
 
     private void initView() {
@@ -85,47 +107,6 @@ public class MainActivity extends AppCompatActivity implements MainRecyclerViewA
         recyclerView.setLayoutManager(linearLayoutManager);
         MainRecyclerViewAdapter adapter = new MainRecyclerViewAdapter(data);
         recyclerView.setAdapter(adapter);
-        adapter.setListener(this);
-    }
-
-    @Override
-    public void onClick(int pos) {
-        Toast.makeText(this, "这是第" + (pos + 1) + "个", Toast.LENGTH_SHORT).show();
-        switch (pos) {
-            case 0: {
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("ccx://com.faw.android/dexClassLoader"));
-                startActivity(intent);
-            }
-            break;
-
-            case 1:
-                startActivity(new Intent(this, FirstActivity.class));
-                break;
-            case 2:
-                startActivity(new Intent(this, SecondActivity.class));
-                break;
-            case 3:
-                startActivity(new Intent(this, ThirdActivity.class));
-                break;
-            case 4:
-                startActivity(new Intent(this, ScreenShotActivity.class));
-                break;
-            case 5:
-                startActivity(new Intent(this, CustomedLayoutActivity.class));
-                break;
-            case 6:
-                startActivity(new Intent(this, MVVMActivity.class));
-                break;
-            case 7:
-                startActivity(new Intent(this, ComponentActivity.class));
-                break;
-            case 8:
-                startActivity(new Intent(this, WebViewActivity.class));
-                break;
-            case 9:
-                startActivity(new Intent(this, AIDLActivity.class));
-                break;
-        }
     }
 
     private void initPermission() {

@@ -102,8 +102,13 @@ dependencies {
 }
 
 
-task("hello") {
-    doLast {
-        println("helper")
+task makeJar(type: Copy) {
+    println("makeJar works")
+    def classFilePath = 'src/main/java/com/example/test/classloader/impl/DexImpl.java'
+    // 定义要打包的class路径
+    def jarFilePath = 'libs/DexImpl.jar'
+    exec {
+        //jar -cf xx.jar xx.class
+        commandLine "jar", "-cvf", jarFilePath, classFilePath
     }
 }

@@ -1,7 +1,7 @@
 package com.example.test.mvvm.viewmodel
 
 import androidx.lifecycle.ViewModel
-import com.example.test.mvvm.model.DTLiveData
+import com.example.test.mvvm.data.DTLiveData
 
 /**
  * 作者：蔡承轩（阿蔡）

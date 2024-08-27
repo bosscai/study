@@ -1,4 +1,4 @@
-package com.example.test.mvvm.model;
+package com.example.test.mvvm.data;
 
 import androidx.lifecycle.LiveData;
 

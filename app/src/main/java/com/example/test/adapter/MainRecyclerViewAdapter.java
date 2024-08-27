@@ -9,26 +9,22 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.test.R;
+import com.example.test.model.MainItem;
 
 import java.util.List;
 
 public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainRecyclerViewAdapter.MainViewHolder> {
 
-    private List<String> data;
-    private onClickListener listener;
+    private List<MainItem> data;
 
     public MainRecyclerViewAdapter() { }
 
-    public MainRecyclerViewAdapter(List<String> data) {
+    public MainRecyclerViewAdapter(List<MainItem> data) {
         this.data = data;
     }
 
-    public void setData(List<String> data) {
+    public void setData(List<MainItem> data) {
         this.data = data;
-    }
-
-    public void setListener(onClickListener listener) {
-        this.listener = listener;
     }
 
     @NonNull
@@ -40,13 +36,10 @@ public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainRecyclerVi
 
     @Override
     public void onBindViewHolder(@NonNull MainViewHolder holder, int position) {
-        holder.textView.setText(data.get(position));
-        holder.textView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                listener.onClick(position);
-            }
-        });
+        String title = data.get(position).getTitle();
+        MainItem.ItemClickListener listener = data.get(position).getListener();
+        holder.textView.setText(title);
+        holder.textView.setOnClickListener(view -> listener.onItemClick(position, title));
     }
 
     @Override
@@ -63,8 +56,5 @@ public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainRecyclerVi
             super(itemView);
             textView = itemView.findViewById(R.id.tv_content);
         }
-    }
-    public interface onClickListener{
-        void onClick(int pos);
     }
 }
