@@ -44,7 +44,7 @@ object AppUtils {
         try {
             val inputReader = InputStreamReader(context.assets.open(fileName))
             val bufferedReader = BufferedReader(inputReader)
-            var line: String? = null
+            var line: String?
             val stringBuilder = StringBuilder()
             while (bufferedReader.readLine().also { line = it} != null){
                 if (stringBuilder.isNotEmpty()){

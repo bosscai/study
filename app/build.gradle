@@ -4,7 +4,13 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-android-extensions'
+    id 'com.tencent.tinker.patch'
 //    id 'com.example.firstplugin'
+}
+
+def bakPath = file("${buildDir}/bakApk/")
+ext {
+    tinkerOldApkPath = "${bakPath}/app-debug-0828-16-49-10.apk"
 }
 
 repositories {
@@ -32,6 +38,7 @@ android {
         targetSdk 30
         versionCode 1
         versionName "1.0"
+        buildConfigField "String", "TINKER_ID", "\"${getTinkerIdValue()}\""
 
         ndk {
             abiFilters "armeabi-v7a", "arm64-v8a", "x86"
@@ -77,6 +84,19 @@ android {
     }
 }
 
+tinkerPatch {
+    /**
+     * necessary，default 'null'
+     * the old apk path, use to diff with the new apk to build
+     * add apk from the build/bakApk
+     */
+    oldApk = getOldApkPath()
+
+    buildConfig {
+        tinkerId = getTinkerIdValue()
+    }
+}
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
     implementation 'androidx.appcompat:appcompat:1.2.0'
@@ -99,10 +119,22 @@ dependencies {
 
     //插桩相关业务
 //    implementation(project(':utils'))
+    //热修复
+    implementation "com.tencent.tinker:tinker-android-anno:$tinker_version"
+    implementation "com.tencent.tinker:tinker-android-lib:$tinker_version"
 }
 
+task lintCheck() {
+    println("lintCheck")
+    getAllTasks(true).each {
+        def lintTasks = it.value.findAll { it.name.contains("lint") }
+        lintTasks.each {
+            it.enabled = false
+        }
+    }
+}
 
-task makeJar(type: Copy) {
+def makeJar() {
     println("makeJar works")
     def classFilePath = 'src/main/java/com/example/test/classloader/impl/DexImpl.java'
     // 定义要打包的class路径
@@ -111,4 +143,29 @@ task makeJar(type: Copy) {
         //jar -cf xx.jar xx.class
         commandLine "jar", "-cvf", jarFilePath, classFilePath
     }
+}
+
+def getTinkerIdValue() {
+    return hasProperty("TINKER_ID") ? TINKER_ID : gitSha()
+}
+
+def gitSha() {
+    try {
+        String gitRev = 'git rev-parse --short HEAD'.execute(null, project.rootDir).text.trim()
+        if (gitRev == null) {
+            throw new GradleException("can't get git rev, you should add git to system path or just input test value, such as 'testTinkerId'")
+        }
+        return gitRev
+    } catch (Exception e) {
+        throw new GradleException("can't get git rev, you should add git to system path or just input test value, such as 'testTinkerId'")
+    }
+}
+
+def getOldApkPath() {
+    return hasProperty("OLD_APK") ? OLD_APK : ext.tinkerOldApkPath
+}
+
+task test2() {
+    println("test2222")
+    println(getOldApkPath())
 }
