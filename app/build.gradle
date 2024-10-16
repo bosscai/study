@@ -122,6 +122,8 @@ dependencies {
     //热修复
     implementation "com.tencent.tinker:tinker-android-anno:$tinker_version"
     implementation "com.tencent.tinker:tinker-android-lib:$tinker_version"
+    //
+    implementation "androidx.media:media:1.2.0"
 }
 
 task lintCheck() {

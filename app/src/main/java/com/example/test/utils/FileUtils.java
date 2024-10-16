@@ -63,4 +63,23 @@ public class FileUtils {
             cache.mkdirs();
         return cache;
     }
+
+    public static File getFilesDir(Context context){
+        return context.getFilesDir();
+    }
+
+    public static boolean mkdirCustomDir(Context context, String dirName) {
+        File filesDir = getFilesDir(context);
+        if (filesDir == null) {
+            return false;
+        } else {
+            File file = new File(filesDir, dirName);
+            if (!file.exists()) {
+                return file.mkdirs();
+            }
+            return true;
+        }
+    }
+
+
 }
