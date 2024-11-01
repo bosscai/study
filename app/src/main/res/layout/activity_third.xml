@@ -4,50 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ThirdActivity">
+    tools:context=".media.MediaActivity">
 
-    <Button
-        android:id="@+id/btn_enable"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="Enable"
-        android:textAllCaps="false"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@+id/btn_disable"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/btn_disable"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="Disable"
-        android:textAllCaps="false"
-        app:layout_constraintLeft_toRightOf="@+id/btn_enable"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/img_show"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:src="@drawable/beauty_1"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_enable" />
-    <FrameLayout
-        android:background="@drawable/beauty_1"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/media_recyclerview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
-    <TextView
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:maxLines="1"
-        android:text="当她走过，整个世界都会因为她的美丽而停顿；她的目光，仿佛带有星辰般的智慧和神秘，让人深陷其中无法自拔；她的微笑，像是春风化雨，温柔而又迷人。她就是那个让人一见倾心，永远难忘的美丽女子"
-        android:ellipsize="end"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="30dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

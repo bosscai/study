@@ -3,23 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ThreadPoolActivity">
-    <Button
-        android:id="@+id/btn_create_thread"
+    android:layout_height="match_parent">
+
+    <VideoView
+        android:id="@+id/video_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="100dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:text="创建线程"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/btn_get_thread"
+        android:id="@+id/btn_start_splash"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="@+id/btn_create_thread"
-        app:layout_constraintBottom_toBottomOf="@+id/btn_create_thread"
-        app:layout_constraintLeft_toRightOf="@+id/btn_create_thread"
-        android:text="获得线程数"/>
+        android:layout_marginBottom="30dp"
+        android:text="开始动画"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,6 +3,7 @@ package com.example.test.fragment;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -82,6 +83,9 @@ public class Fragment1 extends BaseFragment {
             String filePath = getActivity().getFilesDir().getAbsolutePath()+"/gril.jpeg";
             Bitmap bitmap = BitmapFactory.decodeFile(filePath);
             mImgShow.setImageBitmap(bitmap);
+
+            Uri uri = FileUtils.getImageContentUri(getContext(), new File(filePath));
+            Log.e(TAG, "initView: " + uri);
         });
     }
 
