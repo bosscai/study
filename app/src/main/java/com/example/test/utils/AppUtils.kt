@@ -1,15 +1,16 @@
 package com.example.test.utils
 
 import android.app.Activity
+import android.app.ActivityManager
 import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Build
+import android.os.Process
 import android.util.Log
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import java.io.BufferedReader
 import java.io.InputStreamReader
-import java.lang.StringBuilder
 
 /**
  * 作者：蔡承轩（阿蔡）
@@ -20,6 +21,19 @@ import java.lang.StringBuilder
 object AppUtils {
 
     const val TAG = "AppUtils"
+
+    /**
+     * 返回当前应用App内存使用情况
+     * @return MB
+     */
+    fun getAppMemory(context: Context): Float {
+        val mActivityManager = context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+        val appPID = Process.myPid()
+        val pids = IntArray(1)
+        pids[0] = appPID
+        val memoryInfoArray = mActivityManager.getProcessMemoryInfo(pids)
+        return memoryInfoArray[0].totalPss / 1024f;
+    }
 
     fun checkPermission(act: Activity, permissions: Array<String>, request: Int): Boolean {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
