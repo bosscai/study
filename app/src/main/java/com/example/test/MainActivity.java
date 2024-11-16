@@ -8,23 +8,21 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.Manifest;
-import android.content.ComponentName;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
-import android.webkit.URLUtil;
-import android.widget.Toast;
 
 import com.example.test.adapter.MainRecyclerViewAdapter;
+import com.example.test.media.MediaActivity;
 import com.example.test.model.MainItem;
 import com.example.test.mvvm.MVVMActivity;
 import com.example.test.view.CustomedLayoutActivity;
 import com.example.test.webview.WebViewActivity;
 
-import java.net.URI;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -64,6 +62,8 @@ public class MainActivity extends AppCompatActivity {
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction("android.net.conn.CONNECTIVITY_CHANGE");
         registerReceiver(networkStateReceiver, intentFilter);
+        File filesDir = getApplication().getFilesDir();
+        Log.e(TAG, "filesDir: " + filesDir.getAbsolutePath() + " exists: " + filesDir.exists());
     }
 
     private void initData() {
@@ -78,8 +78,8 @@ public class MainActivity extends AppCompatActivity {
         data.add(new MainItem("ViewStub学习", (position, title) -> {
             startActivity(new Intent(this, SecondActivity.class));
         }));
-        data.add(new MainItem("Enable", (position, title) -> {
-            startActivity(new Intent(this, ThirdActivity.class));
+        data.add(new MainItem("Media", (position, title) -> {
+            startActivity(new Intent(this, MediaActivity.class));
         }));
         data.add(new MainItem("ScreenShot", (position, title) -> {
             startActivity(new Intent(this, ScreenShotActivity.class));
