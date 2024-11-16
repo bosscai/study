@@ -1,7 +1,8 @@
 package com.example.test.mvvm.viewmodel;
 
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
-import com.example.test.mvvm.data.*;
 
 /**
  * 作者：蔡承轩（阿蔡）
@@ -11,13 +12,20 @@ import com.example.test.mvvm.data.*;
  */
 public class VideoCommentViewModel extends ViewModel {
 
-    private DTLiveData<Boolean> mCommentAction;
+    private MutableLiveData<Boolean> mCommentAction = new MutableLiveData<>();
 
-    public DTLiveData<Boolean> getCommentAction() {
-        if (mCommentAction == null) {
-            mCommentAction = new DTLiveData<>();
-        }
+    public LiveData<Boolean> getCommentAction() {
         return mCommentAction;
+    }
+
+    private MutableLiveData<String> mStickyAction = new MutableLiveData<>();
+
+    public LiveData<String> getStickyAction() {
+        return mStickyAction;
+    }
+
+    public void sendStickyAction(String stickyText){
+        mStickyAction.postValue(stickyText);
     }
 
     public void sendCommentOpenAction(){

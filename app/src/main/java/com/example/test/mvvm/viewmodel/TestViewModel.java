@@ -1,7 +1,8 @@
 package com.example.test.mvvm.viewmodel;
 
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
-import com.example.test.mvvm.data.*;
 
 /**
  * 作者：蔡承轩（阿蔡）
@@ -11,12 +12,13 @@ import com.example.test.mvvm.data.*;
  */
 public class TestViewModel extends ViewModel {
 
-    private DTLiveData<String> str;
+    private MutableLiveData<String> mText = new MutableLiveData<>();
 
-    public DTLiveData<String> getStr() {
-        if (str == null){
-            str = new DTLiveData<String>();
-        }
-        return str;
+    public LiveData<String> getStr() {
+        return mText;
+    }
+
+    public void setStr(String str) {
+        mText.postValue(str);
     }
 }

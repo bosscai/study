@@ -51,7 +51,14 @@ public class RightOperationFragment extends BaseFragment {
             @Override
             public void onClick(View v) {
                 if (commentViewModel != null){
-                    commentViewModel.sendCommentOpenAction();
+                    commentViewModel.sendStickyAction("点击了评论");
+                    v.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            commentViewModel.sendCommentOpenAction();
+                        }
+                    }, 2000);
+
                 }
             }
         });

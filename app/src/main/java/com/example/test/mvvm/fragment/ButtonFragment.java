@@ -41,7 +41,7 @@ public class ButtonFragment extends BaseFragment {
                 @Override
                 public void onClick(View v) {
                     Log.d(TAG, "onClick: " + v.getId());
-                    model.getStr().postValue(System.currentTimeMillis() + "");
+                    model.setStr(System.currentTimeMillis() + "");
                 }
             });
         }

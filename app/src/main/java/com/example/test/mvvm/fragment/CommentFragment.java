@@ -3,6 +3,8 @@ package com.example.test.mvvm.fragment;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.test.R;
@@ -41,6 +43,10 @@ public class CommentFragment extends BaseFragment {
                 Log.e(TAG, "onClick: " + v.getTag());
                 commentViewModel.sendCommentCloseAction();
             }
+        });
+
+        commentViewModel.getStickyAction().observe(getViewLifecycleOwner(), str -> {
+            Toast.makeText(getContext(), str, Toast.LENGTH_SHORT).show();
         });
     }
 }

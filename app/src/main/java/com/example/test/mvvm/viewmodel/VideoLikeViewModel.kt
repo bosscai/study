@@ -1,7 +1,8 @@
 package com.example.test.mvvm.viewmodel
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.test.mvvm.data.DTLiveData
 
 /**
  * 作者：蔡承轩（阿蔡）
@@ -12,10 +13,10 @@ import com.example.test.mvvm.data.DTLiveData
 class VideoLikeViewModel: ViewModel() {
 
     private val mLikeAction by lazy {
-        DTLiveData<Boolean>()
+        MutableLiveData<Boolean>()
     }
 
-    fun getLikeAction(): DTLiveData<Boolean> {
+    fun getLikeAction(): LiveData<Boolean> {
         return mLikeAction;
     }
 
