@@ -2,3 +2,4 @@ rootProject.name = "Study"
 include ':app'
 include ':utils'
 include ':plugin'
+include ':nativelib'

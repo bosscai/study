@@ -43,6 +43,7 @@ android {
         ndk {
             abiFilters "armeabi-v7a", "arm64-v8a", "x86"
         }
+        ndkVersion "23.1.7779620"
         registerTransform(new InjectTransform())
     }
 //变种，打马甲包使用
@@ -126,6 +127,8 @@ dependencies {
     implementation "com.tencent.tinker:tinker-android-lib:$tinker_version"
     //
     implementation "androidx.media:media:1.2.0"
+
+    implementation(project(':nativelib'))
 }
 
 allprojects {

@@ -1,7 +1,11 @@
 package com.example.test.fragment;
 
+import android.util.Log;
+import android.widget.Button;
+
 import com.example.test.R;
 import com.example.test.mvvm.fragment.BaseFragment;
+import com.faw.nativelib.NativeLib;
 
 /**
  * author：  caichengxuan
@@ -10,6 +14,11 @@ import com.example.test.mvvm.fragment.BaseFragment;
  * describe:
  **/
 public class Fragment2 extends BaseFragment {
+
+    public static final String TAG = "Fragment2";
+
+    private Button mBtnShow;
+
     @Override
     protected int setLayoutId() {
         return R.layout.fragment_layout_2;
@@ -17,7 +26,11 @@ public class Fragment2 extends BaseFragment {
 
     @Override
     protected void initView() {
-
+        mBtnShow = getRootView().findViewById(R.id.btn_show);
+        mBtnShow.setOnClickListener(view -> {
+            NativeLib nativeLib = new NativeLib();
+            Log.e(TAG, "initView: " + nativeLib.stringFromJNI());
+        });
     }
 
     @Override
