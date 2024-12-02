@@ -26,33 +26,11 @@ class ComponentActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_component)
-        tab_layout.setupWithViewPager(view_pager)
-        val tab0 = tab_layout.newTab().apply {
-            text = "第一个"
-        }
-        val tab1 = tab_layout.newTab().apply {
-            text = "第二个"
-        }
-        val tab2 = tab_layout.newTab().apply {
-            text = "第三个"
-        }
-        val tab3 = tab_layout.newTab().apply {
-            text = "第四个"
-        }
-        val tab4 = tab_layout.newTab().apply {
-            text = "第五个"
-        }
-        tab_layout.addTab(tab0)
-        tab_layout.addTab(tab1)
-        tab_layout.addTab(tab2)
-        tab_layout.addTab(tab3)
-        tab_layout.addTab(tab4)
-
-        view_pager.offscreenPageLimit = 4
+        tabLayout.setupWithViewPager(view_pager)
         val adapter = MyPagerAdapter(supportFragmentManager, lists)
         view_pager.adapter = adapter
 
-        tab_layout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+        tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {
                 Log.d(TAG, "onTabSelected tab:${tab.position}")
             }

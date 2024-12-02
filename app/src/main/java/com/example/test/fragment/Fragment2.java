@@ -28,8 +28,9 @@ public class Fragment2 extends BaseFragment {
     protected void initView() {
         mBtnShow = getRootView().findViewById(R.id.btn_show);
         mBtnShow.setOnClickListener(view -> {
-            NativeLib nativeLib = new NativeLib();
-            Log.e(TAG, "initView: " + nativeLib.stringFromJNI());
+            Log.e(TAG, "stringFromJNI: " + NativeLib.stringFromJNI());
+            Log.e(TAG, "add: " + NativeLib.add(1, 2));
+            NativeLib.dealPic("测试一下，看看行不行");
         });
     }
 
