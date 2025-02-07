@@ -128,6 +128,10 @@ dependencies {
     //
     implementation "androidx.media:media:1.2.0"
 
+    // https://mvnrepository.com/artifact/com.alibaba/dashscope-sdk-java
+    // 通义千问
+//    implementation 'com.alibaba:dashscope-sdk-java:2.17.1'
+
     implementation(project(':nativelib'))
 }
 
