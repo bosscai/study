@@ -33,13 +33,13 @@ public class TaxActivity5 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity5_tax);
-        data.add(new TexItem2("2024-05",TITLE + "正常工资薪金" , CAMPANY + FAW, "29146.67", "1587.28"));
-        data.add(new TexItem2("2024-04",TITLE + "正常工资薪金" , CAMPANY + FAW, "29146.67", "1587.28"));
-        data.add(new TexItem2("2024-03",TITLE + "正常工资薪金" , CAMPANY + FAW, "29146.67", "1587.28"));
-        data.add(new TexItem2("2024-02",TITLE + "正常工资薪金" , CAMPANY + FAW, "29146.67", "512.99"));
-        data.add(new TexItem2("2024-01",TITLE + "正常工资薪金" , CAMPANY + FAW, "29146.67", "514.44"));
-        data.add(new TexItem2("2024-01",TITLE + "全年一次性奖金收入" , CAMPANY + FAW, "29146.67", "504.22"));
-        data.add(new TexItem2("2024-01",TITLE + "正常工资薪金" , CAMPANY + FAW, "0", "0"));
+        data.add(new TexItem2("2025-05",TITLE + "正常工资薪金" , CAMPANY + FAW, "29146.67", "1587.28"));
+        data.add(new TexItem2("2025-04",TITLE + "正常工资薪金" , CAMPANY + FAW, "29146.67", "1587.28"));
+        data.add(new TexItem2("2025-03",TITLE + "正常工资薪金" , CAMPANY + FAW, "29146.67", "1587.28"));
+        data.add(new TexItem2("2025-02",TITLE + "正常工资薪金" , CAMPANY + FAW, "29146.67", "512.99"));
+        data.add(new TexItem2("2025-01",TITLE + "正常工资薪金" , CAMPANY + FAW, "29146.67", "514.44"));
+        data.add(new TexItem2("2025-01",TITLE + "全年一次性奖金收入" , CAMPANY + FAW, "58293.34", "5079.26"));
+        data.add(new TexItem2("2025-01",TITLE + "正常工资薪金" , CAMPANY + FAW, "0", "0"));
 
 
         double incomeSum = 0;
