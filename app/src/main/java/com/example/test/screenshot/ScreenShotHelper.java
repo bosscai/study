@@ -6,7 +6,7 @@ import android.database.ContentObserver;
 import android.database.Cursor;
 import android.graphics.BitmapFactory;
 import android.graphics.Point;
-import android.media.MediaController2;
+//import android.media.MediaController2;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -162,11 +162,11 @@ public class ScreenShotHelper {
         mInternalObserver = new MediaContentObserver(mUiHandler, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
         mExternalObserver = new MediaContentObserver(mUiHandler, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
 
-        mContext.getContentResolver().registerContentObserver(MediaStore.Images.Media.INTERNAL_CONTENT_URI,
-                Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q, mInternalObserver);
+//        mContext.getContentResolver().registerContentObserver(MediaStore.Images.Media.INTERNAL_CONTENT_URI,
+//                Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q, mInternalObserver);
 
-        mContext.getContentResolver().registerContentObserver(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
-                Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q, mExternalObserver);
+//        mContext.getContentResolver().registerContentObserver(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+//                Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q, mExternalObserver);
     }
 
     public void stopListener(){
@@ -201,17 +201,17 @@ public class ScreenShotHelper {
         Cursor cursor = null;
         try {
             //数据改变时查询数据库中最后加入的一条数据
-            Log.i(TAG, "handleMediaContentChange SDK_INT：" + Build.VERSION.SDK_INT);
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                Bundle bundle = new Bundle();
-                bundle.putInt(ContentResolver.QUERY_ARG_LIMIT, 1);
-                cursor = mContext.getContentResolver().query(
-                        contentUri,
-                        Build.VERSION.SDK_INT < 16 ? MEDIA_PROJECTIONS : MEDIA_PROJECTIONS_API_16,
-                        bundle,
-                        null
-                );
-            } else {
+//            Log.i(TAG, "handleMediaContentChange SDK_INT：" + Build.VERSION.SDK_INT);
+//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+//                Bundle bundle = new Bundle();
+//                bundle.putInt(ContentResolver.QUERY_ARG_LIMIT, 1);
+//                cursor = mContext.getContentResolver().query(
+//                        contentUri,
+//                        Build.VERSION.SDK_INT < 16 ? MEDIA_PROJECTIONS : MEDIA_PROJECTIONS_API_16,
+//                        bundle,
+//                        null
+//                );
+//            } else {
                 cursor = mContext.getContentResolver().query(
                         contentUri,
                         Build.VERSION.SDK_INT < 16 ? MEDIA_PROJECTIONS : MEDIA_PROJECTIONS_API_16,
@@ -219,7 +219,7 @@ public class ScreenShotHelper {
                         null,
                         MediaStore.Images.ImageColumns.DATE_ADDED + " desc limit 1"
                 );
-            }
+//            }
             if (cursor == null){
                 Log.e(TAG, "handleMediaContentChange: " + "Deviant logic.");
             } else if (!cursor.moveToFirst()){

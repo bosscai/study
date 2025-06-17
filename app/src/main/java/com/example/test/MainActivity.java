@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.lifecycle.MutableLiveData;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -36,6 +37,8 @@ public class MainActivity extends AppCompatActivity {
 
     private NetworkStateReceiver networkStateReceiver;
 
+    private MutableLiveData<Boolean> mInBandRing = new MutableLiveData<>();
+
     /**
      * 需要申请的权限
      */
@@ -64,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
         registerReceiver(networkStateReceiver, intentFilter);
         File filesDir = getApplication().getFilesDir();
         Log.e(TAG, "filesDir: " + filesDir.getAbsolutePath() + " exists: " + filesDir.exists());
+        Log.e(TAG, "mkdir res: " + Boolean.TRUE.equals(mInBandRing));
     }
 
     private void initData() {
@@ -98,6 +102,16 @@ public class MainActivity extends AppCompatActivity {
         })));
         data.add(new MainItem("AIDL", ((position, title) -> {
             startActivity(new Intent(this, AIDLActivity.class));
+        })));
+        data.add(new MainItem("个税", ((position, title) -> {
+            startActivity(new Intent(this, TaxActivity.class));
+        })));
+
+        data.add(new MainItem("个税1", ((position, title) -> {
+            startActivity(new Intent(this, TaxActivity5.class));
+        })));
+        data.add(new MainItem("个税2", ((position, title) -> {
+            startActivity(new Intent(this, TaxActivity6.class));
         })));
     }
 

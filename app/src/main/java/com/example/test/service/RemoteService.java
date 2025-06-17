@@ -15,7 +15,7 @@ import com.example.test.IServer;
  * author：  caichengxuan
  * email：   chengxuan_cai@163.com
  * time：    2024/6/13
- * describe:
+ * describe: 这是在另一个进程中的service中，
  **/
 public class RemoteService extends Service {
 

@@ -20,17 +20,37 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Test">
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        <activity
+            android:name=".TaxActivity"
+            android:exported="false" />
+        <activity
+            android:name=".TaxActivity2"
+            android:exported="false" />
+        <activity
+            android:name=".TaxActivity3"
+            android:exported="false" />
+        <activity
+            android:name=".TaxActivity4"
+            android:exported="false" />
+        <activity
+            android:name=".TaxActivity5"
+            android:exported="false" />
+        <activity
+            android:name=".TaxActivity6"
+            android:exported="false" />
         <activity
             android:name=".classloader.DexClassLoaderActivity"
             android:exported="false">
             <intent-filter>
                 <category android:name="android.intent.category.DEFAULT" />
+
                 <action android:name="android.intent.action.VIEW" />
+
                 <data
-                    android:scheme="ccx"
                     android:host="com.faw.android"
-                    android:path="/dexClassLoader" />
+                    android:path="/dexClassLoader"
+                    android:scheme="ccx" />
             </intent-filter>
         </activity>
         <activity
@@ -116,15 +136,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        
+
         <provider
-            android:authorities="com.example.test.fileProvider"
             android:name="androidx.core.content.FileProvider"
+            android:authorities="com.example.test.fileProvider"
             android:exported="false"
-            android:grantUriPermissions="true" >
+            android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_provider_paths"/>
+                android:resource="@xml/file_provider_paths" />
         </provider>
 
         <receiver

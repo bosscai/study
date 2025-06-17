@@ -26,10 +26,15 @@ class ComponentActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_component)
-        tabLayout.setupWithViewPager(view_pager)
         val adapter = MyPagerAdapter(supportFragmentManager, lists)
-        view_pager.adapter = adapter
-
+        myViewPager.adapter = adapter
+        tabLayout.setupWithViewPager(myViewPager)
+        val tabTitles = arrayOf("Tab1", "Tab2", "Tab3", "Tab4", "Tab5")
+        tabLayout.addTab(tabLayout.newTab().setText(tabTitles[0]))
+        tabLayout.addTab(tabLayout.newTab().setText(tabTitles[1]))
+        tabLayout.addTab(tabLayout.newTab().setText(tabTitles[2]))
+        tabLayout.addTab(tabLayout.newTab().setText(tabTitles[3]))
+        tabLayout.addTab(tabLayout.newTab().setText(tabTitles[4]))
         tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {
                 Log.d(TAG, "onTabSelected tab:${tab.position}")
@@ -41,7 +46,7 @@ class ComponentActivity : AppCompatActivity() {
             override fun onTabReselected(tab: TabLayout.Tab?) {
             }
         })
-        view_pager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener{
+        myViewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener{
             override fun onPageScrolled(
                 position: Int,
                 positionOffset: Float,

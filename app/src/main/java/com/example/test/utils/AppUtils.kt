@@ -22,6 +22,10 @@ object AppUtils {
 
     const val TAG = "AppUtils"
 
+    fun test() {
+
+    }
+
     /**
      * 返回当前应用App内存使用情况
      * @return MB
