@@ -10,19 +10,17 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.test.R;
-import com.example.test.model.MainItem;
 import com.example.test.model.TexItem;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public class TexViewAdapter extends RecyclerView.Adapter<TexViewAdapter.TaxViewHolder> {
+public class CMBViewAdapter extends RecyclerView.Adapter<CMBViewAdapter.CMBViewHolder> {
 
     private ArrayList<TexItem> data;
 
-    public TexViewAdapter() { }
+    public CMBViewAdapter() { }
 
-    public TexViewAdapter(ArrayList<TexItem> data) {
+    public CMBViewAdapter(ArrayList<TexItem> data) {
         this.data = data;
     }
 
@@ -32,16 +30,16 @@ public class TexViewAdapter extends RecyclerView.Adapter<TexViewAdapter.TaxViewH
 
     @NonNull
     @Override
-    public TaxViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_layout_tax, parent, false);
-        return new TaxViewHolder(view);
+    public CMBViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_layout_cmb, parent, false);
+        return new CMBViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull TaxViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull CMBViewHolder holder, int position) {
         String title = data.get(position).getTitle();
-        holder.textView.setText(title);
-        holder.imageView.setImageResource(data.get(position).getResID());
+//        holder.textView.setText(title);
+//        holder.imageView.setImageResource(data.get(position).getResID());
 
     }
 
@@ -53,10 +51,10 @@ public class TexViewAdapter extends RecyclerView.Adapter<TexViewAdapter.TaxViewH
         return -1;
     }
 
-    class TaxViewHolder extends RecyclerView.ViewHolder{
+    class CMBViewHolder extends RecyclerView.ViewHolder{
         TextView textView;
         ImageView imageView;
-        public TaxViewHolder(@NonNull View itemView) {
+        public CMBViewHolder(@NonNull View itemView) {
             super(itemView);
             textView = itemView.findViewById(R.id.tv_content);
             imageView = itemView.findViewById(R.id.img_show);

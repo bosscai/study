@@ -7,9 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.test.adapter.TexViewAdapter;
 import com.example.test.adapter.TexViewAdapter2;
-import com.example.test.model.TexItem;
 import com.example.test.model.TexItem2;
 
 import java.text.DecimalFormat;

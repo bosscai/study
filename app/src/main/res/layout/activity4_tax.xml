@@ -5,70 +5,29 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="top"
+    android:background="#f8f8f8"
     tools:context=".TaxActivity">
 
-    <View
-        android:id="@+id/btn_exit"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:background="#00FFFFFF"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/img_second"
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:scaleType="fitXY"
-        android:src="@drawable/screenshot_4"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <View
-        android:layout_width="100dp"
-        android:layout_height="25dp"
-        android:layout_marginTop="70dp"
-        android:layout_marginRight="30dp"
-        android:gravity="center"
-        android:background="@color/white"
-        app:layout_constraintRight_toRightOf="@+id/img_second"
-        app:layout_constraintTop_toTopOf="@+id/img_second" />
-
-    <TextView
-        android:id="@+id/tv_content"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="72dp"
-        android:layout_marginRight="30dp"
-        android:gravity="center"
-        android:textSize="16sp"
-        android:text="155993.16"
-        android:textColor="@color/black"
-        app:layout_constraintRight_toRightOf="@+id/img_second"
-        app:layout_constraintTop_toTopOf="@+id/img_second" />
-
-    <View
-        android:layout_width="100dp"
-        android:layout_height="25dp"
-        android:layout_marginTop="111dp"
-        android:layout_marginRight="30dp"
-        android:gravity="center"
-        android:background="@color/white"
-        app:layout_constraintRight_toRightOf="@+id/img_second"
-        app:layout_constraintTop_toTopOf="@+id/img_second" />
+<!--    <ImageView-->
+<!--        android:id="@+id/img_second"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:src="@drawable/bg"-->
+<!--        app:layout_constraintLeft_toLeftOf="parent"-->
+<!--        app:layout_constraintRight_toRightOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="111dp"
-        android:layout_marginRight="30dp"
-        android:gravity="center"
-        android:textSize="16sp"
-        android:text="6097.06"
-        android:textColor="@color/black"
-        app:layout_constraintRight_toRightOf="@+id/img_second"
-        app:layout_constraintTop_toTopOf="@+id/img_second" />
+        android:layout_marginLeft="63dp"
+        android:layout_marginTop="190dp"
+        android:text="储蓄卡"
+        android:textColor="#989898"
+        android:textSize="12sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview"

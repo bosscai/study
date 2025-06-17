@@ -31,7 +31,7 @@
             android:name=".TaxActivity3"
             android:exported="false" />
         <activity
-            android:name=".TaxActivity4"
+            android:name=".CMBActivity"
             android:exported="false" />
         <activity
             android:name=".TaxActivity5"

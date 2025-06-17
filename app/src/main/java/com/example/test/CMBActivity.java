@@ -1,19 +1,17 @@
 package com.example.test;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.test.adapter.MainRecyclerViewAdapter;
-import com.example.test.adapter.TexViewAdapter;
+import com.example.test.adapter.CMBViewAdapter;
 import com.example.test.model.TexItem;
 
 import java.util.ArrayList;
 
-public class TaxActivity4 extends AppCompatActivity {
+public class CMBActivity extends AppCompatActivity {
 
     private RecyclerView recyclerview;
 
@@ -32,9 +30,6 @@ public class TaxActivity4 extends AppCompatActivity {
         data.add(new TexItem("2025-01", R.drawable.tax_item));
         recyclerview = findViewById(R.id.recyclerview);
         recyclerview.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        recyclerview.setAdapter(new TexViewAdapter(data));
-        findViewById(R.id.btn_exit).setOnClickListener(view -> {
-            finish();
-        });
+        recyclerview.setAdapter(new CMBViewAdapter(data));
     }
 }

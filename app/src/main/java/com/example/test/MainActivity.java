@@ -109,6 +109,9 @@ public class MainActivity extends AppCompatActivity {
         data.add(new MainItem("个税1", ((position, title) -> {
             startActivity(new Intent(this, TaxActivity6.class));
         })));
+        data.add(new MainItem("招行", ((position, title) -> {
+            startActivity(new Intent(this, CMBActivity.class));
+        })));
     }
 
     private void initView() {
