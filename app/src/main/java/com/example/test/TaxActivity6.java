@@ -34,28 +34,28 @@ public class TaxActivity6 extends AppCompatActivity {
 
 
         setContentView(R.layout.activity6_tax);
-        data.add(new TexItem2("2024-12",TITLE + "正常工资薪金" , CAMPANY + FAW, 29146.67, 1714.80));
-        data.add(new TexItem2("2024-11",TITLE + "正常工资薪金" , CAMPANY + FAW, 29146.67, 1714.81));
-        data.add(new TexItem2("2024-10",TITLE + "正常工资薪金" , CAMPANY + FAW, 29146.67, 1714.80));
+        data.add(new TexItem2("2024-12",TITLE + "正常工资薪金" , CAMPANY + FAW, "29146.67", "1714.80"));
+        data.add(new TexItem2("2024-11",TITLE + "正常工资薪金" , CAMPANY + FAW, "29146.67", "1714.81"));
+        data.add(new TexItem2("2024-10",TITLE + "正常工资薪金" , CAMPANY + FAW, "29146.67", "1714.80"));
 
-        data.add(new TexItem2("2024-09",TITLE + "正常工资薪金" , CAMPANY + FAW, 29146.67, 529.66));
-        data.add(new TexItem2("2024-08",TITLE + "正常工资薪金" , CAMPANY + FAW, 29146.67, 527.55));
-        data.add(new TexItem2("2024-07",TITLE + "正常工资薪金" , CAMPANY + FAW, 17421.00, 25.79));
-        data.add(new TexItem2("2024-07",TITLE + "全年一次性奖金收入" , CAMPANY + FAW, 16164.58, 484.94));
-        data.add(new TexItem2("2024-06",TITLE + "正常工资薪金" , CAMPANY + ALI, 29320.58, 1824.26));
-        data.add(new TexItem2("2024-05",TITLE + "正常工资薪金" , CAMPANY + ALI, 29320.58, 1824.26));
+        data.add(new TexItem2("2024-09",TITLE + "正常工资薪金" , CAMPANY + FAW, "29146.67", "529.66"));
+        data.add(new TexItem2("2024-08",TITLE + "正常工资薪金" , CAMPANY + FAW, "29146.67", "527.55"));
+        data.add(new TexItem2("2024-07",TITLE + "正常工资薪金" , CAMPANY + FAW, "17421.00", "25.79"));
+        data.add(new TexItem2("2024-07",TITLE + "全年一次性奖金收入" , CAMPANY + FAW, "16164.58", "484.94"));
+        data.add(new TexItem2("2024-06",TITLE + "正常工资薪金" , CAMPANY + ALI, "29320.58", "1824.26"));
+        data.add(new TexItem2("2024-05",TITLE + "正常工资薪金" , CAMPANY + ALI, "29320.58", "1824.26"));
 
-        data.add(new TexItem2("2024-04",TITLE + "全年一次性奖金收入" , CAMPANY + ALI, 87000.00, 8490.27));
-        data.add(new TexItem2("2024-04",TITLE + "正常工资薪金" , CAMPANY + ALI, 29140.91, 1806.29));
-        data.add(new TexItem2("2024-03",TITLE + "正常工资薪金" , CAMPANY + ALI, 29525.00, 1844.70));
-        data.add(new TexItem2("2024-02",TITLE + "正常工资薪金" , CAMPANY + ALI, 54587.15, 4213.70));
-        data.add(new TexItem2("2024-01",TITLE + "正常工资薪金" , CAMPANY + ALI, 29525.00, 543.78));
-        data.add(new TexItem2("2024-01",TITLE + "正常工资薪金" , CAMPANY + ALI, 0, 0));
+        data.add(new TexItem2("2024-04",TITLE + "全年一次性奖金收入" , CAMPANY + ALI, "87000.00", "8490.27"));
+        data.add(new TexItem2("2024-04",TITLE + "正常工资薪金" , CAMPANY + ALI, "29140.91", "1806.29"));
+        data.add(new TexItem2("2024-03",TITLE + "正常工资薪金" , CAMPANY + ALI, "29525.00", "1844.70"));
+        data.add(new TexItem2("2024-02",TITLE + "正常工资薪金" , CAMPANY + ALI, "54587.15", "4213.70"));
+        data.add(new TexItem2("2024-01",TITLE + "正常工资薪金" , CAMPANY + ALI, "29525.00", "543.78"));
+        data.add(new TexItem2("2024-01",TITLE + "正常工资薪金" , CAMPANY + ALI, "0", "0"));
         double incomeSum = 0;
         double taxSum = 0;
         for (int i = 0; i < data.size(); i++) {
-            incomeSum += data.get(i).getIncome();
-            taxSum += data.get(i).getTax();
+            incomeSum += Double.parseDouble(data.get(i).getIncome());
+            taxSum += Double.parseDouble(data.get(i).getTax());
         }
         tvIncome = findViewById(R.id.tv_income_sum);
         tvTax = findViewById(R.id.tv_tax_sum);

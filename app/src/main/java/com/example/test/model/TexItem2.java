@@ -10,10 +10,10 @@ public class TexItem2 {
     private String month;
     private String title;
     private String company;
-    private double income;
-    private double tax;
+    private String income;
+    private String tax;
 
-    public TexItem2(String month, String title, String company, double income, double tax) {
+    public TexItem2(String month, String title, String company, String income, String tax) {
         this.month = month;
         this.title = title;
         this.company = company;
@@ -33,11 +33,11 @@ public class TexItem2 {
         return company;
     }
 
-    public double getIncome() {
+    public String getIncome() {
         return income;
     }
 
-    public double getTax() {
+    public String getTax() {
         return tax;
     }
 }

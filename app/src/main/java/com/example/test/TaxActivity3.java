@@ -14,7 +14,7 @@ public class TaxActivity3 extends AppCompatActivity {
         setContentView(R.layout.activity3_tax);
         findViewById(R.id.img_second).setOnClickListener(view -> {
             Log.e("TAG", "onCreate: ");
-            startActivity(new Intent(this, TaxActivity4.class));
+            startActivity(new Intent(this, TaxActivity5.class));
         });
     }
 }

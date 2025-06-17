@@ -42,11 +42,8 @@ public class TexViewAdapter2 extends RecyclerView.Adapter<TexViewAdapter2.TaxVie
         holder.tvMonth.setText(data.get(position).getMonth());
         holder.tvTitle.setText(data.get(position).getTitle());
         holder.tvCompany.setText(data.get(position).getCompany());
-        DecimalFormat df = new DecimalFormat("#.##"); // 两位小数，自动四舍五入
-        String formattedIncome = df.format(data.get(position).getIncome());
-        holder.tvIncome.setText("收入：" + formattedIncome);
-        String formattedTax = df.format(data.get(position).getTax());
-        holder.tvTax.setText("已申报税额：" + formattedTax);
+        holder.tvIncome.setText("收入：" + data.get(position).getIncome());
+        holder.tvTax.setText("已申报税额：" + data.get(position).getTax());
     }
 
     @Override
