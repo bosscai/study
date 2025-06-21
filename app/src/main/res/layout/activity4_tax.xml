@@ -85,8 +85,8 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:layout_width="12dp"
-            android:layout_height="12dp"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
             android:layout_marginLeft="3dp"
             android:src="@drawable/icon_triangle"
             app:layout_constraintBottom_toBottomOf="@+id/tv_date"
@@ -106,8 +106,8 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:layout_width="12dp"
-            android:layout_height="12dp"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
             android:layout_marginLeft="3dp"
             android:src="@drawable/icon_triangle"
             app:layout_constraintBottom_toBottomOf="@+id/tv_bank"
@@ -117,19 +117,21 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
             android:layout_marginRight="55dp"
             android:text="按金额"
             android:textColor="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toRightOf="@+id/tv_bank"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="10dp"
+            android:layout_marginTop="5dp"
             android:text="筛选"
-            android:textColor="@color/black"
+            android:textColor="#6A95DE"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

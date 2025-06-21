@@ -4,7 +4,6 @@ import android.view.View;
 import android.widget.FrameLayout;
 
 import com.example.test.R;
-import com.example.test.SplashFragment;
 import com.example.test.mvvm.fragment.BaseFragment;
 
 /**
@@ -25,10 +24,6 @@ public class Fragment5 extends BaseFragment {
     @Override
     protected void initView() {
         frameLayout = getRootView().findViewById(R.id.fra_container);
-        getChildFragmentManager()
-                .beginTransaction()
-                .replace(frameLayout.getId(), new SplashFragment(), "")
-                .commitAllowingStateLoss();
     }
 
     @Override
