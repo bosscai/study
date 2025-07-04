@@ -44,7 +44,8 @@ public class MainActivity extends AppCompatActivity {
      */
     private String[] mPermissions = {
             Manifest.permission.WRITE_EXTERNAL_STORAGE,
-            Manifest.permission.READ_EXTERNAL_STORAGE
+            Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.CALL_PHONE
     };
     /**
      * 缺少的权限的List，未授权的权限放在这个List里面
@@ -111,6 +112,12 @@ public class MainActivity extends AppCompatActivity {
         })));
         data.add(new MainItem("招行", ((position, title) -> {
             startActivity(new Intent(this, CMBActivity.class));
+        })));
+        data.add(new MainItem("网易", ((position, title) -> {
+            startActivity(new Intent(this, NetEaseActivity.class));
+        })));
+        data.add(new MainItem("网易2", ((position, title) -> {
+            startActivity(new Intent(this, NetEaseActivity2.class));
         })));
     }
 

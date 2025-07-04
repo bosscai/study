@@ -9,6 +9,7 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> <!-- 手机震动的权限 -->
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <queries>
         <package android:name="com.tencent.mm" />
@@ -21,6 +22,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        <activity
+            android:name=".NetEaseActivity2"
+            android:exported="false" />
+        <activity
+            android:name=".NetEaseActivity"
+            android:exported="false" />
         <activity
             android:name=".TaxActivity"
             android:exported="false" />
