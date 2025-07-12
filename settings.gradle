@@ -2,3 +2,4 @@ rootProject.name = "Study"
 include ':app'
 include ':plugin'
 include ':nativelib'
+include ':flutter_study'
